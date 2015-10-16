@@ -1,0 +1,63 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          elk
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: 
+# Description:        ELK stack
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+export PATH
+
+if [ `id -u` -ne 0 ]; then
+   echo "You need root privileges to run this script"
+   exit 1
+fi
+
+start() {
+	/etc/init.d/elasticsearch start
+	/etc/init.d/redis start
+	/etc/init.d/logstash start
+	return 0
+}
+
+stop() {
+	/etc/init.d/logstash stop
+	/etc/init.d/redis stop
+	/etc/init.d/elasticsearch stop
+	return 0
+}
+status() {
+	/etc/init.d/logstash status
+	/etc/init.d/redis status
+	/etc/init.d/elasticsearch status
+	return 0
+}
+
+
+case "$1" in
+  start)
+    start
+    exit $?
+    ;;
+  stop)
+    stop
+    exit $?
+    ;;
+  status)
+    status
+    exit $?
+    ;;
+  restart) 
+    stop && start 
+    ;;
+  *)
+    echo "Usage: $SCRIPTNAME {start|stop|force-stop|status|restart}" >&2
+    exit 3
+  ;;
+esac
+
+exit $?
