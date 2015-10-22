@@ -381,6 +381,3 @@ action.disable_delete_all_indices: true
 #
 # HQ fix
 #http.cors.enabled: true
-compress.default.type: snappy
-index.store.compress.stored: true
-index.store.compress.tv: true
