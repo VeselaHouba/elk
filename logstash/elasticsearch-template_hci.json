@@ -32,7 +32,7 @@
                "location" : { "type" : "geo_point" }
              }
          },
-	 "message": { "type": "string", "index": "analyzed" }
+	 "message": { "type": "string", "index": "analyzed" },
 	 "path": { "type": "string", "index": "analyzed" }
        }
     }
