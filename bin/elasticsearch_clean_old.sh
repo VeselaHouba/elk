@@ -1,2 +1,2 @@
 #!/bin/bash
-curator --host localhost delete --older-than 7
+curator --host localhost delete --older-than 6	
