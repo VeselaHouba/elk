@@ -1,6 +1,6 @@
 HSAPP1a (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}\[%{NOTSPACE:App_user}\]%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP1b (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
-HSAPP1 %{HSAPP1a}|%{HSAPP1b}
+HSAPP1 %{HSAPP1b}|%{HSAPP1a}
 HSAPP2 (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP3 (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}(?<REST>(.|\r|\n)*))
 HSAPP_PATH1 /var/log/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
