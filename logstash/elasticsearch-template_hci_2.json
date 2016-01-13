@@ -2,6 +2,10 @@
   "template" : "logstash-*",
   "settings" : {
     "index.refresh_interval" : "5s"
+    "compress.default.type": "snappy",
+    "index.store.compress.stored": "true",
+    "index.query.default_field" : "message",
+    "index.store.compress.tv": "true"
   },
   "mappings" : {
     "_default_" : {
