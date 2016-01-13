@@ -27,12 +27,12 @@
          "geoip"  : {
            "type" : "object",
              "dynamic": true,
-             "path": "full",
              "properties" : {
                "location" : { "type" : "geo_point" }
              }
          },
-	 "message": { "type": "string", "index": "analyzed" },
+	 "message": { "type": "string", "index": "analyzed" , "ignore_above" : 256},
+	 "App_message": { "type": "string", "index": "not_analyzed" , "ignore_above" : 256},
 	 "path": { "type": "string", "index": "analyzed" }
        }
     }
