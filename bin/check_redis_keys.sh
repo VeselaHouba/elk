@@ -1,4 +1,7 @@
 #!/bin/bash
+uname -n
+uptime | grep -ohe 'load average[s:][: ].*' | awk '{ print $3" "$4" "$5 }'
+echo ""
 vals=""
 for i in apache apache_rotated weblogic hsapp; 
 do 

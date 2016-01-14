@@ -9,7 +9,7 @@ JAVACMD=/opt/jdk1.7.0_80/bin/java
 #LS_HOME=/var/lib/logstash
 
 # Arguments to pass to logstash agent
-#LS_OPTS=""
+LS_OPTS="-w 5"
 
 # Arguments to pass to java
 #LS_HEAP_SIZE="500m"

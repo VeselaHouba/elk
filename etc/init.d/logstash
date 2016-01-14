@@ -178,7 +178,7 @@ case "$1" in
     ;;
   restart)
 
-    quiet configtest
+    #quiet configtest
     RET=$?
     if [ ${RET} -ne 0 ]; then
       echo "Configuration error. Not restarting. Re-run with configtest parameter for details"
