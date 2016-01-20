@@ -18,22 +18,22 @@ if [ `id -u` -ne 0 ]; then
 fi
 
 start() {
-	/etc/init.d/elasticsearch start
-	/etc/init.d/redis start
-	/etc/init.d/logstash start
+	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
+		$i start
+	done
 	return 0
 }
 
 stop() {
-	/etc/init.d/logstash stop
-	/etc/init.d/redis stop
-	/etc/init.d/elasticsearch stop
+	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
+		$i stop
+	done
 	return 0
 }
 status() {
-	/etc/init.d/logstash status
-	/etc/init.d/redis status
-	/etc/init.d/elasticsearch status
+	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
+		$i status
+	done
 	return 0
 }
 
