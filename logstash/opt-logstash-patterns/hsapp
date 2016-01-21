@@ -2,7 +2,9 @@ HSAPP1a (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}
 HSAPP1b (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP1 %{HSAPP1b}|%{HSAPP1a}
 HSAPP2 (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
-HSAPP3 (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}(?<REST>(.|\r|\n)*))
+HSAPP3a (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}%{NOTSPACE:App_class}%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{GREEDYDATA:App_message}%{SPACE}\[(?<App_thread>.*)\])
+HSAPP3b (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}(?<REST>(.|\r|\n)*))
+HSAPP3  %{HSAPP3a}|%{HSAPP3b}
 HSAPP_PATH1 /var/log/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
 HSAPP_PATH2 /var/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
 HSAPP_PATH3 /log/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
