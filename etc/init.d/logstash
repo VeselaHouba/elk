@@ -90,7 +90,7 @@ stop() {
     echo "Killing $name (pid $pid) with SIGTERM"
     kill -TERM $pid
     # Wait for it to exit.
-    for i in 1 2 3 4 5 ; do
+    for i in `seq 1 30` ; do
       echo "Waiting $name (pid $pid) to die..."
       status || break
       sleep 1
