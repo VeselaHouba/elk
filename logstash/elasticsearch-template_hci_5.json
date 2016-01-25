@@ -1,0 +1,44 @@
+{
+  "template": "logstash-*",
+  "settings": {
+    "index.refresh_interval": "5s",
+    "index.codec": "best_compression"
+  },
+  "mappings": {
+    "_default_": {
+      "dynamic_templates": [{
+        "string_fields": {
+          "mapping": {
+            "index": "not_analyzed",
+            "type": "string",
+            "doc_values": true
+          },
+          "match_mapping_type": "string",
+          "match": "*"
+        }
+      }],
+      "properties": {
+        "@version": {
+          "index": "not_analyzed",
+          "type": "string"
+        },
+	"App_message": {
+          "index": "analyzed",
+          "type": "string"
+	},
+	"App_class": {
+          "index": "analyzed",
+          "type": "string"
+	},
+	"Wls_MessageText": {
+          "index": "analyzed",
+          "type": "string"
+	}
+      },
+      "_all": {
+        "enabled": false
+      }
+    }
+  },
+  "aliases": {}
+}
