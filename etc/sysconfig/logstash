@@ -38,3 +38,5 @@ LS_OPTS="-w 5"
 # not exited within a reasonable time, SIGKILL will be sent next.
 # The default behavior is to simply log a message "program stop failed; still running"
 KILL_ON_STOP_TIMEOUT=0
+
+JAVA_HOME=/opt/java

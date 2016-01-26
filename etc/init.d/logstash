@@ -53,7 +53,7 @@ start() {
 
   LS_JAVA_OPTS="${LS_JAVA_OPTS} -Djava.io.tmpdir=${LS_HOME}"
   HOME=${LS_HOME}
-  export PATH HOME LS_HEAP_SIZE LS_JAVA_OPTS LS_USE_GC_LOGGING
+  export PATH HOME JAVA_OPTS LS_HEAP_SIZE LS_JAVA_OPTS LS_USE_GC_LOGGING JAVA_HOME
 
   # chown doesn't grab the suplimental groups when setting the user:group - so we have to do it for it.
   # Boy, I hope we're root here.
@@ -143,7 +143,7 @@ configtest() {
 
   JAVA_OPTS=${LS_JAVA_OPTS}
   HOME=${LS_HOME}
-  export PATH HOME JAVA_OPTS LS_HEAP_SIZE LS_JAVA_OPTS LS_USE_GC_LOGGING
+  export PATH HOME JAVA_OPTS LS_HEAP_SIZE LS_JAVA_OPTS LS_USE_GC_LOGGING JAVA_HOME
 
   test_args="-f ${LS_CONF_DIR} --configtest ${LS_OPTS}"
   $program ${test_args}
