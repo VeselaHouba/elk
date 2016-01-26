@@ -73,3 +73,4 @@ ES_STARTUP_SLEEP_TIME=5
 # When using Systemd, this setting is ignored and the 'vm.max_map_count'
 # property is set at boot time in /usr/lib/sysctl.d/elasticsearch.conf
 #MAX_MAP_COUNT=262144
+JAVA_HOME=/opt/java
