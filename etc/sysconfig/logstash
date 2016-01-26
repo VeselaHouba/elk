@@ -3,7 +3,7 @@
 ###############################
 
 # Override Java location
-JAVACMD=/opt/jdk1.7.0_80/bin/java
+JAVACMD=/opt/java/bin/java
 
 # Set a home directory
 #LS_HOME=/var/lib/logstash
