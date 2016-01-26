@@ -33,6 +33,10 @@
 	"Wls_MessageText": {
           "index": "analyzed",
           "type": "string"
+	},
+	"Apache_RequestUri": {
+          "index": "analyzed",
+          "type": "string"
 	}
       },
       "_all": {

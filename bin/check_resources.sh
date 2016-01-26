@@ -1,5 +1,5 @@
 #!/bin/bash
-THRESHOLD=97
+THRESHOLD=93
 function stop_elk {
 	ps aux | sort -nk +4 > /opt/logstash/memory_`date +%Y.%m.%d_%H.%M`
 	echo "Out of resources, stopping elasticsearch" | mail -s "Elasticsearch problems" jan.michalek@embedit.cz
