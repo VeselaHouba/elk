@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 cd /opt/elk
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse @{u})
