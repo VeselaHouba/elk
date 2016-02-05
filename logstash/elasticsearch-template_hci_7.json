@@ -1,0 +1,14 @@
+{
+  "template" : "logstash-*",
+  "settings" : {
+    "index.refresh_interval" : "5s",
+    "index.codec": "best_compression"
+  },
+  "mappings" : {
+    "apache_access" : {
+      "properties" : {
+        "Apache_RemoteIp": { "type": "ip" }
+      }
+    }
+  }
+}
