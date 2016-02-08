@@ -4,6 +4,3 @@
 */10 * * * *	root > /var/log/logstash_2.log
 */10 * * * *	root > /var/log/logstash_3.log
 */10 * * * *	root > /var/log/logstash_4.log
-*/10 * * * *    root > /log/logstash/logstash.log
-*/10 * * * *    root > /log/logstash/logstash_2.log
-*/10 * * * *    root > /log/logstash/logstash_3.log
