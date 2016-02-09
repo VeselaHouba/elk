@@ -1,0 +1,31 @@
+{
+	"template" : "logstash-*",
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"index.codec": "best_compression"
+	},
+	"mappings" : {
+		"apache_access" : {
+			"properties" : {
+				"Apache_RemoteIp": { "type": "ip" },
+				"Apache_RequestUri": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Apache_JSESSIONID": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"geoip"	: {
+					"properties" : {
+						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				}
+			}
+		}
+	}
+}
