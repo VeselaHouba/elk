@@ -1,0 +1,28 @@
+/log/elasticsearch/*.log {
+	copytruncate
+	missingok
+	compress
+	notifempty
+	daily
+	rotate 7
+	dateext
+}
+
+/log/logstash/*.log {
+	daily
+	rotate 7
+	copytruncate
+	compress
+	missingok
+	notifempty
+}
+
+/log/redis/*.log {
+    weekly
+    rotate 7
+    copytruncate
+    delaycompress
+    compress
+    notifempty
+    missingok
+}
