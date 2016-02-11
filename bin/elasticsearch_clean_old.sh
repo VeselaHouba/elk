@@ -1,5 +1,5 @@
 #!/bin/bash
-def=6
+def=7
 if [ $# -ne 1 ] ;then
 	echo "using default $def days"
 else
