@@ -9,12 +9,12 @@
 }
 
 /log/logstash/*.log {
-        daily
-        rotate 7
-        copytruncate
-        compress
-        missingok
-        notifempty
+	daily
+	rotate 7
+	copytruncate
+	compress
+	missingok
+	notifempty
 }
 
 /log/redis/*.log {
