@@ -15,10 +15,26 @@
 				}
 			}
 		},
+		"wlserver": {
+			"properties" : {
+				"Wls_MessageId": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
 		"apache_access" : {
 			"properties" : {
 				"Apache_RemoteIp": { "type": "ip" },
 				"Apache_RequestUri": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Apache_VirtualHost": {
 					"type" : "string",
 					"fields" : {
 						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
