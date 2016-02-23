@@ -5,7 +5,6 @@ WLS_OUT <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem
 WLS_ACCESS %{YEAR:WlsHttp_Year}[/-]%{MONTHNUM:WlsHttp_Month}[/-]%{MONTHDAY:WlsHttp_Day}[/\t]%{TIME:WlsHttp_Time}[/\t]%{IPV4:WlsHttp_SourceIp}[/\t]%{NUMBER:WlsHttp_StatusCode}[/\t]%{NUMBER:WlsHttp_RequestBytes}[/\t]%{NUMBER:WlsHttp_ResponseTime}[/\t]%{DATA:WlsHttp_Method}[/\t]%{GREEDYDATA:WlsHttp_Request}
 OSB_TIMESTAMP %{DAY:Day} %{MONTH:Month} %{MONTHDAY:MonthDay} %{TIME:Time} %{DATA:Timezone} %{YEAR:Year}
 OSB_SRV_LOG %{OSB_TIMESTAMP:Osb_Timestamp} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{GREEDYDATA:Osb_MessageText}
-OSB_DIAG_LOG \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
 NM_LOG1 <%{DATA:Nm_Timestamp}> <%{LOGLEVEL:Nm_Severity}> <%{DATA:Nm_DomainName}> <%{DATA:Wls_ManagedServer}> <%{GREEDYDATA:Wls_MessageText}>
 NM_LOG2 <%{DATA:Nm_Timestamp}> <%{LOGLEVEL:Nm_Severity}> <%{DATA:Nm_MessageText}>[/\n]%{GREEDYDATA:Nm_AdditionalText}
 NM_LOG3 <%{DATA:Nm_Timestamp}> <%{LOGLEVEL:Nm_Severity}> <%{DATA:Nm_MessageText}>
@@ -15,3 +14,7 @@ JAVA_GC1 \[%{DATA:JavaGC_Severity}\]\[%{DATA:JavaGC_Memory}\] \[%{DATA:JavaGC_Co
 JAVA_GC2 \[%{DATA:JavaGC_Severity}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC3 \[%{DATA:JavaGC_Severity}\]\[%{DATA:JavaGC_Memory}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC %{JAVA_GC1}|%{JAVA_GC2}|%{JAVA_GC3}
+NESTEDBRACKET .*?\[.*?\].*?
+OSBDIAG1 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
+OSBDIAG2 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{DATA:Osb_MessageText} %{GREEDYDATA:Osb_Trace}
+OSB_DIAG_LOG %{OSBDIAG2|OSBDIAG1}
