@@ -18,4 +18,4 @@ NESTEDBRACKET .*?\[.*?\].*?
 OSBDIAG1 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
 OSBDIAG2 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{DATA:Osb_MessageText} \[\[%{GREEDYDATA:Osb_Trace}\]\]
 OSB_DIAG_LOG %{OSBDIAG2}|%{OSBDIAG1}
-OSB_TRACE .*Service Ref = %{DATA:Osb_ServiceRef}%{SPACE}URI = %{DATA:Osb_URI} .* <xml-fragment>%{DATA:Osb_XML01}</xml-fragment>
+OSB_TRACE .*Service Ref = %{DATA:Osb_ServiceRef}%{SPACE}URI = %{DATA:Osb_URI}.*%{SPACE}<xml-fragment>%{SPACE}%{DATA:Osb_XML01}%{SPACE}</xml-fragment>
