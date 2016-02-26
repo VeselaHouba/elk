@@ -1,4 +1,3 @@
-NESTEDBRACKET .*?\[.*?\].*?
 WLS_SRV_LOG <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem}> <%{DATA:Wls_Hostname}> <%{DATA:Wls_ManagedServer}> <%{DATA:Wls_ThreadId}> <([<]?)%{DATA:Wls_UserId}?([>]?)> <%{DATA:Wls_TransactionId}> <%{DATA:Wls_DiagnosticContextId}> <%{INT:Wls_Rawtime}> <%{DATA:Wls_MessageId}> <%{GREEDYDATA:Wls_MessageText}>
 WLS_ERR %{GREEDYDATA:Wls_Err}
 WLS_OUT <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem}> <%{DATA:Wls_MessageId}> %{GREEDYDATA:Wls_MessageText}
