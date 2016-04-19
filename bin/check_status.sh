@@ -1,5 +1,6 @@
 #!/bin/bash
-for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
+#for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
+for i in /etc/init.d/logstash* ;do
 	if [ -e $i ] ; then
 		$i status &>/dev/null
 		if [ $? -ne 0 ]; then
