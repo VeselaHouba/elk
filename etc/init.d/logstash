@@ -39,6 +39,7 @@ LS_CONF_DIR=/etc/${name}/conf.d
 LS_OPEN_FILES=16384
 LS_NICE=19
 LS_OPTS=""
+KILL_ON_STOP_TIMEOUT=1
 
 
 [ -r /etc/default/$name ] && . /etc/default/$name

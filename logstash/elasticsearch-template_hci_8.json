@@ -25,7 +25,23 @@
 				}
 			}
 		},
-		"osbdiag": {
+		"osbtrace": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Osb_ManagedServer": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
+		"osblog": {
 			"properties" : {
 				"Osb_Code": {
 					"type" : "string",
