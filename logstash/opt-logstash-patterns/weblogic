@@ -14,7 +14,15 @@ JAVA_GC2 \[%{DATA:JavaGC_Severity}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC3 \[%{DATA:JavaGC_Severity}\]\[%{DATA:JavaGC_Memory}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC %{JAVA_GC1}|%{JAVA_GC2}|%{JAVA_GC3}
 NESTEDBRACKET .*?\[.*?\].*?
+OSB_TIMESTAMP_2 %{YEAR}-%{MONTHNUM}-%{MONTHDAY}%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}-%{DATA} %{DATA}
 OSBDIAG1 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
 OSBDIAG2 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{DATA:Osb_MessageText}%{SPACE}\[\[%{GREEDYDATA:Osb_Trace}\]\]
+OSBDIAG_SPLIT1 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
+OSBDIAG_SPLIT2 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
 OSB_DIAG_LOG %{OSBDIAG2}|%{OSBDIAG1}
 OSB_TRACE .*Service Ref = %{DATA:Osb_ServiceRef}%{SPACE}URI = %{DATA:Osb_URI}.*Request metadata =%{SPACE}%{DATA:Osb_XML01}%{SPACE}Payload =%{SPACE}%{GREEDYDATA:Osb_XML02}
+OSBLOG01 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[tid:%{SPACE}%{DATA:Osb_Tid}\] \[userId:%{SPACE}%{DATA:Osb_Userid}\] \[ecid:%{SPACE}%{DATA:Osb_Ecid}\]%{GREEDYDATA:Osb_MessageText}
+OSBLOG02 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[tid:%{SPACE}%{DATA:Osb_Tid}\] \[userId:%{SPACE}%{DATA:Osb_Userid}\] \[ecid:%{SPACE}%{DATA:Osb_Ecid}\]%{DATA:Osb_MessageText}%{SPACE}\[\[%{GREEDYDATA:Osb_Trace}\]\]
+OSB_SPLIT2 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
+OSB_SPLIT1 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
+OSB_SPLIT_LOG %{OSB_SPLIT1}|%{OSB_SPLIT2}
