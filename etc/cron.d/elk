@@ -1,2 +1,2 @@
-*/15 * * * * 	root /opt/elk/bin/check_status.sh
+#*/15 * * * * 	root /opt/elk/bin/check_status.sh
 #*/5 * * * *		root bash /opt/elk/bin/update_from_git.sh &> /var/log/git.log
