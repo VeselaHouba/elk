@@ -41,10 +41,17 @@ appender:
       type: consolePattern
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
 
+#  file:
+#    type: dailyRollingFile
+#    file: ${path.logs}/${cluster.name}.log
+#    datePattern: "'.'yyyy-MM-dd"
+#    layout:
+#      type: pattern
+#      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %.10000m%n"
+
   file:
-    type: dailyRollingFile
+    type: file
     file: ${path.logs}/${cluster.name}.log
-    datePattern: "'.'yyyy-MM-dd"
     layout:
       type: pattern
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %.10000m%n"
