@@ -1,0 +1,35 @@
+export environ=us_prod
+umask 022
+cp -a /root/distribute/keys/* /root/.ssh/
+chmod 600 /root/.ssh/id_rsa
+chmod 644 /root/.ssh/id_rsa.pub
+yum install -y git /root/distribute/rpm/logstash-*.rpm
+cd /opt
+rm -rf elk
+
+# git via proxy
+#ssh-keyscan -p 2222 localhost >> /root/.ssh/known_hosts
+#git clone -b $environ ssh://git@localhost:2222/ops/elk.git
+# direct git
+ssh-keyscan git.homecredit.net >> /root/.ssh/known_hosts
+git clone -b $environ git@git.homecredit.net:ops/elk.git
+
+mkdir -p /log/logstash /opt/logstash/patterns
+chown -R logstash: /log/logstash /opt/logstash/patterns
+
+rm -f /opt/logstash/patterns/* /etc/logstash/conf.d/*
+ln -s /opt/elk/logstash/conf.d/conf_available/*agent* /etc/logstash/conf.d/
+ln -sf /opt/elk/logstash/opt-logstash-patterns/* /opt/logstash/patterns/
+ln -sf /opt/elk/etc/init.d/logstash /etc/init.d/logstash
+ln -sf /opt/elk/etc/sysconfig/logstash /etc/sysconfig/logstash
+ln -sf /opt/elk/etc/cron.d/elk_agent /etc/cron.d/
+
+usermod -G bea -a logstash
+if [ ! -e /opt/java ];then
+        cd /opt
+        tar xzf /root/distribute/server-jre-7u80-linux-x64.tar.gz
+        ln -s jdk1.7.0_80 java
+fi
+systemctl daemon-reload
+service logstash restart
+service crond reload
