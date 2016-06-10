@@ -14,6 +14,10 @@ rm -rf elk
 ssh-keyscan git.homecredit.net >> /root/.ssh/known_hosts
 git clone -b $environ git@git.homecredit.net:ops/elk.git
 
+lvcreate -L1G -n elklog vgLOGS
+mkfs.ext4 /dev/mapper/vgLOGS-elklog
+echo "/dev/mapper/vgLOGS-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
+mount /log
 mkdir -p /log/logstash /opt/logstash/patterns
 chown -R logstash: /log/logstash /opt/logstash/patterns
 
@@ -23,6 +27,8 @@ ln -sf /opt/elk/logstash/opt-logstash-patterns/* /opt/logstash/patterns/
 ln -sf /opt/elk/etc/init.d/logstash /etc/init.d/logstash
 ln -sf /opt/elk/etc/sysconfig/logstash /etc/sysconfig/logstash
 ln -sf /opt/elk/etc/cron.d/elk_agent /etc/cron.d/
+ln -sf /opt/elk/logstash/opt-logstash-bin/logstash.lib.sh /opt/logstash/bin/logstash.lib.sh
+
 
 usermod -G bea -a logstash
 if [ ! -e /opt/java ];then
