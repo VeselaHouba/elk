@@ -3,7 +3,9 @@ umask 022
 cp -a /root/distribute/keys/* /root/.ssh/
 chmod 600 /root/.ssh/id_rsa
 chmod 644 /root/.ssh/id_rsa.pub
-yum install -y git /root/distribute/rpm/logstash-*.rpm
+cp /root/distribute/logstash.repo /etc/yum.repos.d/
+yum clean all
+yum install -y git logstash
 cd /opt
 rm -rf elk
 
@@ -14,9 +16,18 @@ rm -rf elk
 ssh-keyscan git.homecredit.net >> /root/.ssh/known_hosts
 git clone -b $environ git@git.homecredit.net:ops/elk.git
 
-lvcreate -L1G -n elklog vgLOGS
-mkfs.ext4 /dev/mapper/vgLOGS-elklog
-echo "/dev/mapper/vgLOGS-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
+if [ ! -e /dev/mapper/vgLOG*-elklog ] ;then
+	if vgs|grep -q vgLOGS ;then
+	        lvcreate -L1G -n elklog vgLOGS || exit 1
+	        mkfs.ext4 /dev/mapper/vgLOGS-elklog || exit 1
+	        echo "/dev/mapper/vgLOGS-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
+	else
+	        lvcreate -L1G -n elklog vgLOG || exit 1
+	        mkfs.ext4 /dev/mapper/vgLOG-elklog || exit 1
+	        echo "/dev/mapper/vgLOG-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
+	fi
+fi
+mkdir -p /log
 mount /log
 mkdir -p /log/logstash /opt/logstash/patterns
 chown -R logstash: /log/logstash /opt/logstash/patterns
@@ -29,7 +40,6 @@ ln -sf /opt/elk/etc/sysconfig/logstash /etc/sysconfig/logstash
 ln -sf /opt/elk/etc/cron.d/elk_agent /etc/cron.d/
 ln -sf /opt/elk/logstash/opt-logstash-bin/logstash.lib.sh /opt/logstash/bin/logstash.lib.sh
 
-
 usermod -G bea -a logstash
 if [ ! -e /opt/java ];then
         cd /opt
@@ -37,5 +47,13 @@ if [ ! -e /opt/java ];then
         ln -s jdk1.7.0_80 java
 fi
 systemctl daemon-reload
-service logstash restart
 service crond reload
+
+# install syslog plugin to logstash - have to try twice, because of some proxy issues
+export JAVA_HOME=/opt/java
+cd /opt/logstash
+bin/plugin install logstash-output-syslog || bin/plugin install logstash-output-syslog 
+
+service logstash restart
+
+
