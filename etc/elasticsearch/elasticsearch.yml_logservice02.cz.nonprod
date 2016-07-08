@@ -14,13 +14,13 @@
 #
 # Use a descriptive name for your cluster:
 #
-cluster.name: es-us-perf
+cluster.name: cs-nonprod
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-node.name: pxy01-uslogs1.us.prod
+node.name: logservice02.cz.nonprod
 #
 # Add custom attributes to the node:
 #
@@ -76,7 +76,7 @@ network.host: 0.0.0.0
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.zen.ping.unicast.hosts: ["pxy01-uslogs1.us.prod", "pxy02-uslogs1.us.prod"]
+discovery.zen.ping.unicast.hosts: ["logservice02.cz.nonprod", "logservice03.cz.nonprod"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
@@ -94,4 +94,4 @@ discovery.zen.ping.unicast.hosts: ["pxy01-uslogs1.us.prod", "pxy02-uslogs1.us.pr
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
-#indices.fielddata.cache.size:    20%
+#shield.enabled: false

@@ -1,0 +1,9 @@
+/log/elasticsearch/*.log {
+	copytruncate
+	missingok
+	compress
+	notifempty
+	daily
+	rotate 30
+	dateext
+}

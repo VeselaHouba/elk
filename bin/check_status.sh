@@ -4,7 +4,12 @@ for i in /etc/init.d/logstash* ;do
 	if [ -e $i ] ; then
 		$i status &>/dev/null
 		if [ $? -ne 0 ]; then
-			echo "$i is not running, now restarting" |tee >(mail -s "$HOSTNAME" jan.michalek@embedit.cz)
+			FNAME=""
+			if [[ $(basename $i) == logstash* ]];then
+				FNAME="/log/logstash/$(basename $i).err_$(date +%F_%H-%M)"
+				cp /log/logstash/$(basename $i).err /log/logstash/$(basename $i).err_$(date +%F_%H-%M)
+			fi 
+			echo "$i is not running, restarting. $FNAME" |tee >(mail -s "$HOSTNAME" middleware_run@homecredit.net)
 			$i restart
 			exit 1
 		fi
