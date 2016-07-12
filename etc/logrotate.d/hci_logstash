@@ -1,4 +1,5 @@
 /log/logstash/*.log {
+	su logstash logstash
         daily
         rotate 7
         copytruncate
