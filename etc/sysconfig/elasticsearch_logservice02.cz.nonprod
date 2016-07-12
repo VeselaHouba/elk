@@ -33,6 +33,14 @@ ES_JAVA_OPTS=" -verbose:gc -XX:+PrintHeapAtGC"
 # Configure restart on package upgrade (true, every other setting will lead to not restarting)
 #ES_RESTART_ON_UPGRADE=true
 
+# GC OPTIONS
+#ES_GC_OPTS="$ES_GC_OPTS -XX:+UseParNewGC"
+#ES_GC_OPTS="$ES_GC_OPTS -XX:+UseConcMarkSweepGC"
+#ES_GC_OPTS="$ES_GC_OPTS -XX:CMSInitiatingOccupancyFraction=50"
+#ES_GC_OPTS="$ES_GC_OPTS -XX:+UseCMSInitiatingOccupancyOnly"
+
+#export ES_GC_OPTS
+
 # Path to the GC log file
 ES_GC_LOG_FILE=/log/elasticsearch/gc.log
 
