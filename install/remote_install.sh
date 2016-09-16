@@ -13,7 +13,7 @@ for i in `cat $1`;do
 	echo $i
 	scp -o "StrictHostKeyChecking=no" $2 $i:/tmp/commands &>/dev/null
 	rsync -Paz /root/install/distribute/ $i:/root/distribute/
-	#ssh -R 2222:git.homecredit.net:22 -o "ForwardAgent=yes" $i -- "bash /tmp/commands"
 	ssh -o "ForwardAgent=yes" $i -- "bash /tmp/commands"
+	#ssh -R 2222:git.homecredit.net:22 -o "ForwardAgent=yes" $i -- "bash /tmp/commands"
 	sleep 1
 done
