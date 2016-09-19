@@ -1,5 +1,5 @@
-LDAPREQ \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn} op=%{NUMBER:Ldap_Op} msgID=%{NUMBER:Ldap_MsgID}%{SPACE}%{GREEDYDATA:Ldap_Data}
-LDAPRES \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn} op=%{NUMBER:Ldap_Op} msgID=%{NUMBER:Ldap_MsgID} result=%{NUMBER:Ldap_Result} nentries=%{NUMBER:Ldap_Nentries} etime=%{NUMBER:Ldap_etime}
-LDAPDCON \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} conn=%{NUMBER:Ldap_Conn} reason=\"%{DATA:Ldap_Reason}\"
-LDAPCON \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} conn=%{NUMBER:Ldap_Conn} from=%{HOSTPORT:Ldap_From} to=%{HOSTPORT:Ldap_To} protocol=%{GREEDYDATA:Ldap_Protocol}
+LDAPREQ \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn:int} op=%{NUMBER:Ldap_Op:int} msgID=%{NUMBER:Ldap_MsgID:int}%{SPACE}%{GREEDYDATA:Ldap_Data}
+LDAPRES \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn:int} op=%{NUMBER:Ldap_Op:int} msgID=%{NUMBER:Ldap_MsgID:int} result=%{NUMBER:Ldap_Result} nentries=%{NUMBER:Ldap_Nentries:int} etime=%{NUMBER:Ldap_etime:int}
+LDAPDCON \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} conn=%{NUMBER:Ldap_Conn:int} reason=\"%{DATA:Ldap_Reason}\"
+LDAPCON \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} conn=%{NUMBER:Ldap_Conn:int} from=%{HOSTPORT:Ldap_From} to=%{HOSTPORT:Ldap_To} protocol=%{GREEDYDATA:Ldap_Protocol}
 LDAP_ACCESS_LOG %{LDAPRES}|%{LDAPCON}|%{LDAPDCON}|%{LDAPREQ}
