@@ -1,0 +1,3 @@
+LDAPREQ \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn} op=%{NUMBER:Ldap_Op} msgID=%{NUMBER:Ldap_MsgID} %{GREEDYDATA:Ldap_Data}
+LDAPRES \[%{HTTPDATE:Ldap_Timestamp}\] %{DATA:Ldap_Operation} %{DATA:Ldap_Type} conn=%{NUMBER:Ldap_Conn} op=%{NUMBER:Ldap_Op} msgID=%{NUMBER:Ldap_MsgID} result=%{NUMBER:Ldap_Result} nentries=%{NUMBER:Ldap_Nentries} etime=%{NUMBER:Ldap_etime}
+LDAP_ACCESS_LOG %{LDAPRES}|%{LDAPREQ}
