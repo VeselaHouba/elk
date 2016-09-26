@@ -1,6 +1,6 @@
 HSAPP1a (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}\[%{NOTSPACE:App_user}\]%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP1b (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
-HSAPP1c (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}\[.*\]%{SPACE}\[%{DATA:HCITRACE}\]%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
+HSAPP1c (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}\[%{DATA:App_user}\]%{SPACE}\[%{DATA:HCITRACE}\]%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP1 %{HSAPP1c}|%{HSAPP1b}|%{HSAPP1a}
 HSAPP2 (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}\[(?<App_thread>.*)\]%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class}%{SPACE}%{SPACE}%{GREEDYDATA:App_message}(?<App_stacktrace>(.|\r|\n)*))
 HSAPP3a (%{TIMESTAMP_ISO8601:App_timestamp}%{SPACE}%{NOTSPACE:App_class}%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{GREEDYDATA:App_message}%{SPACE}\[(?<App_thread>.*)\])
