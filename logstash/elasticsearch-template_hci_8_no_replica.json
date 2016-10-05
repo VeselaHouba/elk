@@ -3,7 +3,7 @@
 	"settings" : {
 		"index.refresh_interval" : "5s",
 		"index.codec": "best_compression",
-		"number_of_replicas": 1
+		"number_of_replicas": 0
 	},
 	"mappings" : {
 		"_default_": {
@@ -83,6 +83,12 @@
 					"properties" : {
 						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
 					}
+				},
+				"HCITRACE": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
 				}
 			}
 		},
@@ -106,9 +112,25 @@
 						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
 					}
 				},
+				"HCITRACE": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
 				"geoip"	: {
 					"properties" : {
 						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				}
+			}
+		},
+		"ldap_access" : {
+			"properties" : {
+				"Ldap_Data": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
 					}
 				}
 			}
