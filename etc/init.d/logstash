@@ -131,6 +131,12 @@ status() {
   fi
 }
 
+reload() {
+  if status ; then
+    kill -HUP `cat "$pidfile"`
+  fi
+}
+
 force_stop() {
   if status ; then
     stop
@@ -180,6 +186,7 @@ case "$1" in
     fi
     exit $code
     ;;
+  reload) reload ;;
   restart)
 
     #quiet configtest
