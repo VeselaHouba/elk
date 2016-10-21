@@ -19,20 +19,20 @@ fi
 
 start() {
 	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
-		$i start
+		[ -f $i ] && $i start
 	done
 	return 0
 }
 
 stop() {
 	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
-		$i stop
+		[ -f $i ] &&  $i stop
 	done
 	return 0
 }
 status() {
 	for i in /etc/init.d/logstash* /etc/init.d/elasticsearch /etc/init.d/redis ;do
-		$i status
+		[ -f $i ] &&  $i status
 	done
 	return 0
 }
