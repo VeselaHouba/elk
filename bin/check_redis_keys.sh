@@ -1,4 +1,5 @@
 #!/bin/bash
+PATH=$PATH:/opt/redis/bin/
 uname -n
 uptime | grep -ohe 'load average[s:][: ].*' | awk '{ print $3" "$4" "$5 }'
 echo ""
