@@ -18,7 +18,7 @@ User=elasticsearch
 Group=elasticsearch
 
 PermissionsStartOnly=true
-ExecStartPre=/opt/elasticsearch/bin/elasticsearch-systemd-pre-exec
+ExecStartPre=/opt/elk/bin/elasticsearch-systemd-pre-exec
 
 ExecStart=/opt/elasticsearch/bin/elasticsearch \
                                                 -p ${PID_DIR}/elasticsearch.pid \
