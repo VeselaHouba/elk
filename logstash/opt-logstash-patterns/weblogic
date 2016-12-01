@@ -14,7 +14,7 @@ JAVA_GC2 \[%{DATA:JavaGC_Severity}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC3 \[%{DATA:JavaGC_Severity}\]\[%{DATA:JavaGC_Memory}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC %{JAVA_GC1}|%{JAVA_GC2}|%{JAVA_GC3}
 NESTEDBRACKET .*?\[.*?\].*?
-OSB_TIMESTAMP_2 %{YEAR}-%{MONTHNUM}-%{MONTHDAY}%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}-%{DATA} %{DATA}
+OSB_TIMESTAMP_2 %{YEAR}-%{MONTHNUM}-%{MONTHDAY}%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}[+-]%{DATA} %{DATA}
 OSBDIAG1 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
 OSBDIAG2 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{DATA:Osb_MessageText}%{SPACE}\[\[%{GREEDYDATA:Osb_Trace}\]\]
 OSBDIAG_SPLIT1 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
