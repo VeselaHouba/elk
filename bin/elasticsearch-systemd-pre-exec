@@ -7,3 +7,5 @@ if [ ! -z "$CONF_FILE" ]; then
 fi
 mkdir -p $PID_DIR
 chown $ES_USER: $PID_DIR
+# fix max virtual memory areas vm.max_map_count [65530] is too low
+sysctl -w vm.max_map_count=262144
