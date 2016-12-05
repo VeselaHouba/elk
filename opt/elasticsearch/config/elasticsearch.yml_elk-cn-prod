@@ -89,3 +89,7 @@ discovery.zen.minimum_master_nodes: 3
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+# KOPF
+http.cors.enabled: true
+http.cors.allow-origin: /https?:\/\/.+(:[0-9]+)?/
+
