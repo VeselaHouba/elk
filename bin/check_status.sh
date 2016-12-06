@@ -19,7 +19,7 @@ if grep -q 6 /etc/redhat-release ;then
 # RHEL 7, single instance
 else
 	systemctl status logstash &>/dev/null
-	if [ $? -ne 0]; then
+	if [ $? -ne 0 ]; then
 		echo "Logstash is not running, restarting." |tee >(mail -s "$HOSTNAME" middleware_run@homecredit.net)
 		systemctl restart logstash
 		exit 1
