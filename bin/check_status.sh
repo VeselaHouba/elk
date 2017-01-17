@@ -16,6 +16,14 @@ if grep -q 6 /etc/redhat-release ;then
 			fi
 		fi
 	done
+# US issues with systemctl
+elif hostname |grep -q "us.prod"; then
+	service logstash status &>/dev/null
+	if [ $? -ne 0 ]; then
+		echo "Logstash is not running, restarting." |tee >(mail -s "$HOSTNAME" middleware_run@homecredit.net)
+		systemctl restart logstash
+		exit 1
+	fi 
 # RHEL 7, single instance
 else
 	systemctl status logstash &>/dev/null
