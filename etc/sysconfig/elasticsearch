@@ -28,7 +28,8 @@ ES_HEAP_SIZE=8g
 #ES_DIRECT_SIZE=
 
 # Additional Java OPTS
-ES_JAVA_OPTS=" -verbose:gc -XX:+PrintHeapAtGC"
+#ES_JAVA_OPTS=" -verbose:gc -XX:+PrintHeapAtGC"
+ES_JAVA_OPTS=""
 
 # Configure restart on package upgrade (true, every other setting will lead to not restarting)
 #ES_RESTART_ON_UPGRADE=true
