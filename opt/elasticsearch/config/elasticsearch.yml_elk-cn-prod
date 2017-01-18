@@ -93,4 +93,5 @@ discovery.zen.minimum_master_nodes: 3
 http.cors.enabled: true
 http.cors.allow-origin: /https?:\/\/.+(:[0-9]+)?/
 # disk usage watermark
-cluster.routing.allocation.disk.watermark.high: 95%
+cluster.routing.allocation.disk.watermark.low:	92%
+cluster.routing.allocation.disk.watermark.high:	95%
