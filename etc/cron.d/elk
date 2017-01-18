@@ -1,2 +1,3 @@
 */15 * * * * 	root /opt/elk/bin/check_status.sh
 */15 * * * *	root bash /opt/elk/bin/update_from_git.sh &> /var/log/git.log
+15 3 * * *	root find /log/*/ -name ".log-20*" -type f -mtime +10 -delete
