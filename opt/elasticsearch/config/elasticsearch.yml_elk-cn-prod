@@ -92,4 +92,5 @@ discovery.zen.minimum_master_nodes: 3
 # KOPF
 http.cors.enabled: true
 http.cors.allow-origin: /https?:\/\/.+(:[0-9]+)?/
-
+# disk usage watermark
+cluster.routing.allocation.disk.watermark.high: 95%
