@@ -34,7 +34,7 @@ LS_LOG_DIR=/log/logstash
 KILL_ON_STOP_TIMEOUT=1
 
 program=/opt/logstash/bin/logstash
-
+args="--config.reload.automatic"
 start() {
 
   HOME=${LS_HOME}
@@ -56,7 +56,7 @@ start() {
   nice -n ${LS_NICE} chroot --userspec $LS_USER:$LS_GROUP $EXTRA_GROUPS / sh -c "
     cd $LS_HOME
     ulimit -n ${LS_OPEN_FILES}
-    exec \"$program\" 
+    exec \"$program\" $args
   " > "${LS_LOG_DIR}/logstash.stdout" 2> "${LS_LOG_DIR}/logstash.err" &
 
   # Generate the pidfile from here. If we instead made the forked process
