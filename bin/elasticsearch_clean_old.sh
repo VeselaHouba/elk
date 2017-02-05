@@ -5,4 +5,4 @@ if [ $# -ne 1 ] ;then
 else
 	def=$1
 fi
-curator --host localhost delete indices --older-than $def --time-unit days --timestring '%Y.%m.%d'
+curator_cli --host localhost delete_indices --older-than $def --time-unit days --timestring '%Y.%m.%d'
