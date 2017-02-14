@@ -65,6 +65,12 @@
 				"Osb_Code": {
 					"type" : "keyword"
 				},
+				"Osb_ThreadId": {
+					"type" : "keyword"
+				},
+				"Osb_Timestamp2": {
+					"type" : "keyword"
+				},
 				"Osb_ManagedServer": {
 					"type" : "text",
 					"fields" : {
@@ -97,6 +103,9 @@
 					}
 				},
 				"HCITRACE": {
+					"type" : "keyword"
+				},
+				"Apache_Timestamp": {
 					"type" : "keyword"
 				}
 			}
