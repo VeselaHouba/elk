@@ -20,22 +20,9 @@
 			}, {
 				"string_fields" : {
 					"match" : "*",
-					"unmatch": "path",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false
-					}
-				}
-			},
-			{
-				"path_keyword" : {
-					"match" : "path",
-					"match_mapping_type" : "string",
-					"mapping" : {
-						"type" : "text", "norms" : false,
-						"fields" : {
-							"keyword" : { "type": "keyword" }
-						}
 					}
 				}
 			} ],
@@ -50,54 +37,6 @@
 						"latitude" : { "type" : "half_float" },
 						"longitude" : { "type" : "half_float" }
 					}
-				}
-			}
-		},
-		"wlserver": {
-			"properties" : {
-				"Wls_MessageId": {
-					"type" : "keyword"
-				}
-			}
-		},
-		"osblog": {
-			"properties" : {
-				"Osb_Code": {
-					"type" : "keyword"
-				},
-				"Osb_ManagedServer": {
-					"type" : "text",
-					"fields" : {
-						"keyword" : {"type": "keyword"}
-					}
-				}
-			}
-		},
-		"apache_access" : {
-			"properties" : {
-				"Apache_RemoteIp": { "type": "ip" },
-				"Apache_RequestUri": {
-					"type" : "text",
-					"fields" : {
-						"keyword" : {"type": "keyword"}
-					}
-				},
-				"Apache_VirtualHost": {
-					"type" : "text",
-					"fields" : {
-						"keyword" : {"type": "keyword"}
-					}
-				},
-				"Apache_JSESSIONID": {
-					"type" : "keyword"
-				},
-				"geoip"	: {
-					"properties" : {
-						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
-					}
-				},
-				"HCITRACE": {
-					"type" : "keyword"
 				}
 			}
 		}
