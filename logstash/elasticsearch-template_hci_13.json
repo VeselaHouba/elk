@@ -20,6 +20,7 @@
 			}, {
 				"string_fields" : {
 					"match" : "*",
+					"unmatch": "path",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false
@@ -28,7 +29,7 @@
 			},
 			{
 				"path_keyword" : {
-					"path_match" : "path",
+					"match" : "path",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false,
