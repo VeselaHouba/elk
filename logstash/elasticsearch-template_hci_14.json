@@ -28,7 +28,7 @@
 				}
 			},
 			{
-				"path_keyword" : {
+				"path_mixed" : {
 					"match" : "path",
 					"match_mapping_type" : "string",
 					"mapping" : {
