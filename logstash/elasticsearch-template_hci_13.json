@@ -25,6 +25,18 @@
 						"type" : "text", "norms" : false
 					}
 				}
+			},
+			{
+				"path_keyword" : {
+					"path_match" : "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false,
+						"fields" : {
+							"keyword" : { "type": "keyword" }
+						}
+					}
+				}
 			} ],
 			"properties" : {
 				"@timestamp": { "type": "date", "include_in_all": false },
