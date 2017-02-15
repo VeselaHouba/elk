@@ -1,0 +1,171 @@
+{
+	"template" : "logstash-*",
+	"version" : 50002,
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"index.codec": "best_compression"
+	},
+	"mappings" : {
+		"_default_" : {
+			"_all" : {"enabled" : true, "norms" : false},
+			"dynamic_templates" : [ {
+				"message_field" : {
+					"path_match" : "message",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text",
+						"norms" : false
+					}
+				}
+			}, {
+				"string_fields" : {
+					"match" : "*",
+					"unmatch": "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false
+					}
+				}
+			},
+			{
+				"path_mixed" : {
+					"match" : "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false,
+						"fields" : {
+							"keyword" : { "type": "keyword" }
+						}
+					}
+				}
+			} ],
+			"properties" : {
+				"@timestamp": { "type": "date", "include_in_all": false },
+				"@version": { "type": "keyword", "include_in_all": false },
+				"geoip"	: {
+					"dynamic": true,
+					"properties" : {
+						"ip": { "type": "ip" },
+						"location" : { "type" : "geo_point" },
+						"latitude" : { "type" : "half_float" },
+						"longitude" : { "type" : "half_float" }
+					}
+				}
+			}
+		},
+		"wlserver": {
+			"properties" : {
+				"Wls_MessageId": {
+					"type" : "keyword"
+				},
+				"Wls_DiagnosticContextId": {
+					"type" : "keyword"
+				},
+				"Wls_ThreadId": {
+					"type" : "keyword"
+				},
+				"Wls_Timestamp": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"osblog": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "keyword"
+				},
+				"Osb_ThreadId": {
+					"type" : "keyword"
+				},
+				"Osb_Timestamp2": {
+					"type" : "keyword"
+				},
+				"Osb_ManagedServer": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				}
+			}
+		},
+		"hsapp" : {
+			"properties" : {
+				"App_thread" : {
+					"type" : "keyword"
+				},
+				"App_timestamp" : {
+					"type" : "keyword"
+				}
+			}
+		},
+		"apache_access" : {
+			"properties" : {
+				"Apache_RemoteIp": { "type": "ip" },
+				"Apache_RequestUri": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"Apache_VirtualHost": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"Apache_JSESSIONID": {
+					"type" : "keyword"
+				},
+				"HCITRACE": {
+					"type" : "keyword"
+				},
+				"Apache_Timestamp": {
+					"type" : "keyword"
+				},
+				"Apache_RequestVersion" : {
+					"type" : "keyword"
+				},
+				"geoip"	: {
+					"properties" : {
+						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				}
+			}
+		},
+		"apache_error" : {
+			"properties" : {
+				"Apache_Client": { "type": "ip" },
+				"Apache_Timestamp": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"f5_access" : {
+			"properties" : {
+				"F5_RequestUri": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"F5_VirtualHost": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"F5_JSESSIONID": {
+					"type" : "keyword"
+				},
+				"HCITRACE": {
+					"type" : "keyword"
+				},
+				"geoip"	: {
+					"properties" : {
+						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				}
+			}
+		}
+	}
+}
