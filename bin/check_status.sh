@@ -17,7 +17,7 @@ if grep -q 6 /etc/redhat-release ;then
 		fi
 	done
 # US issues with systemctl
-elif hostname |grep -q "us.prod"; then
+elif hostname |grep -q -e "us.*prod"; then
 	for i in /etc/init.d/logstash* ;do
 		if [ -e $i ] ; then
 			$i status &>/dev/null
