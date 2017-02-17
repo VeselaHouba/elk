@@ -1,2 +1,2 @@
-*/15 * * * * 		root /opt/elk/bin/check_status.sh
+#*/15 * * * * 		root /opt/elk/bin/check_status.sh
 0 * * * *		root bash /opt/elk/bin/update_from_master.sh &> /var/log/elk_update.log
