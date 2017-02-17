@@ -66,6 +66,12 @@
 				},
 				"Wls_Timestamp": {
 					"type" : "keyword"
+				},
+				"Wls_ManagedServer": {
+					"type" : "keyword"
+				},
+				"Wls_Severity": {
+					"type" : "keyword"
 				}
 			}
 		},
