@@ -131,6 +131,9 @@
 				"Apache_RequestVersion" : {
 					"type" : "keyword"
 				},
+				"Unix_Hostname" : {
+					"type" : "keyword"
+				},
 				"geoip"	: {
 					"properties" : {
 						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
