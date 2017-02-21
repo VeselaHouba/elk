@@ -132,7 +132,10 @@
 					"type" : "keyword"
 				},
 				"Unix_Hostname" : {
-					"type" : "keyword"
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
 				},
 				"geoip"	: {
 					"properties" : {
