@@ -155,6 +155,9 @@
 				"Apache_Client": { "type": "ip" },
 				"Apache_Timestamp": {
 					"type" : "keyword"
+				},
+				"Unix_Hostname" : {
+					"type" : "keyword"
 				}
 			}
 		},
