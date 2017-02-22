@@ -20,7 +20,7 @@
 			}, {
 				"string_fields" : {
 					"match" : "*",
-					"unmatch": "path",
+					"unmatch": "path|Unix_Hostname",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false
@@ -38,7 +38,17 @@
 						}
 					}
 				}
-			} ],
+			},
+			{
+				"hostname_keyword" : {
+					"match" : "Unix_Hostname",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "keyword"
+					}
+				}
+			}
+			],
 			"properties" : {
 				"@timestamp": { "type": "date", "include_in_all": false },
 				"@version": { "type": "keyword", "include_in_all": false },
@@ -72,9 +82,6 @@
 				},
 				"Wls_Severity": {
 					"type" : "keyword"
-				},
-				"Unix_Hostname" : {
-					"type" : "keyword"
 				}
 			}
 		},
@@ -94,9 +101,6 @@
 					"fields" : {
 						"keyword" : {"type": "keyword"}
 					}
-				},
-				"Unix_Hostname" : {
-					"type" : "keyword"
 				}
 			}
 		},
@@ -106,9 +110,6 @@
 					"type" : "keyword"
 				},
 				"App_timestamp" : {
-					"type" : "keyword"
-				},
-				"Unix_Hostname" : {
 					"type" : "keyword"
 				}
 			}
@@ -140,9 +141,6 @@
 				"Apache_RequestVersion" : {
 					"type" : "keyword"
 				},
-				"Unix_Hostname" : {
-					"type" : "keyword"
-				},
 				"geoip"	: {
 					"properties" : {
 						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
@@ -154,9 +152,6 @@
 			"properties" : {
 				"Apache_Client": { "type": "ip" },
 				"Apache_Timestamp": {
-					"type" : "keyword"
-				},
-				"Unix_Hostname" : {
 					"type" : "keyword"
 				}
 			}
@@ -185,9 +180,6 @@
 					"properties" : {
 						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
 					}
-				},
-				"Unix_Hostname" : {
-					"type" : "keyword"
 				}
 			}
 		}
