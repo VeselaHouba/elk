@@ -20,6 +20,7 @@
 				}
 			}, {
 				"string_fields" : {
+					"match_pattern": "regex",
 					"match" : "*",
 					"unmatch": "path|Unix_Hostname",
 					"match_mapping_type" : "string",
