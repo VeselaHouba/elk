@@ -21,8 +21,8 @@
 			}, {
 				"string_fields" : {
 					"match_pattern": "regex",
-					"match" : "*",
-					"unmatch": "path|Unix_Hostname",
+					"match" : ".*",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false
@@ -42,8 +42,9 @@
 				}
 			},
 			{
-				"hostname_keyword" : {
-					"match" : "Unix_Hostname",
+				"shared_keywords" : {
+					"match_pattern": "regex",
+					"match" : "Unix_Hostname|Environment|Country|HCITRACE",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "keyword"
@@ -134,9 +135,6 @@
 				"Apache_JSESSIONID": {
 					"type" : "keyword"
 				},
-				"HCITRACE": {
-					"type" : "keyword"
-				},
 				"Apache_Timestamp": {
 					"type" : "keyword"
 				},
@@ -173,9 +171,6 @@
 					}
 				},
 				"F5_JSESSIONID": {
-					"type" : "keyword"
-				},
-				"HCITRACE": {
 					"type" : "keyword"
 				},
 				"geoip"	: {
