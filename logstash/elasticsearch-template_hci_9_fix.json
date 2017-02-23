@@ -88,7 +88,22 @@
 					"fields" : {
 						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
 					}
-				}
+				},
+				 "Apache_TimeTakenToServeUs": {
+       				"type": "long"
+      			},
+      			 "Apache_BytesReceived": {
+       				"type": "long"
+      			},
+      			 "Apache_StatusOriginal": {
+       				"type": "long"
+      			},
+      			 "Apache_BytesResponse": {
+       				"type": "long"
+      			},
+      			 "Apache_TimeTakenToServeS": {
+       				"type": "long"
+      			}
 			}
 		},
 		"f5_access" : {
@@ -129,6 +144,9 @@
        				"type": "long"
       			},
 				 "F5_StatusOriginal": {
+       				"type": "long"
+      			},
+				 "F5_BytesReceived": {
        				"type": "long"
       			}
 			}
