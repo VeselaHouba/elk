@@ -1,3 +1,4 @@
 */15 * * * * 		root /opt/elk/bin/check_status.sh &>/dev/null
+0 1 * * *			root find /log/logstash -type f -mtime +30 -delete &>/dev/null
 # following will not work without ssh keys
 #0 * * * *		root bash /opt/elk/bin/update_from_master.sh &> /var/log/elk_update.log
