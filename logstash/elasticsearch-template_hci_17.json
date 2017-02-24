@@ -104,6 +104,9 @@
 				},
 				"Osb_ManagedServer": {
 					"type" : "keyword"
+				},
+				"Osb_Severity": {
+					"type" : "keyword"
 				}
 			}
 		},
