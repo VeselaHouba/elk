@@ -22,7 +22,7 @@
 				"string_fields" : {
 					"match_pattern": "regex",
 					"match" : ".*",
-					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", "norms" : false
@@ -44,7 +44,7 @@
 			{
 				"shared_keywords" : {
 					"match_pattern": "regex",
-					"match" : "Unix_Hostname|Environment|Country|HCITRACE",
+					"match" : "Unix_Hostname|Environment|Country|HCITRACE|worker",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "keyword"
@@ -84,6 +84,9 @@
 					"type" : "keyword"
 				},
 				"Wls_Severity": {
+					"type" : "keyword"
+				},
+				"Wls_UserId": {
 					"type" : "keyword"
 				}
 			}
