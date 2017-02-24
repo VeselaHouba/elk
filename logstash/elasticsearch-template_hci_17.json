@@ -103,10 +103,7 @@
 					"type" : "keyword"
 				},
 				"Osb_ManagedServer": {
-					"type" : "text",
-					"fields" : {
-						"keyword" : {"type": "keyword"}
-					}
+					"type" : "keyword"
 				}
 			}
 		},
@@ -143,11 +140,6 @@
 				},
 				"Apache_RequestVersion" : {
 					"type" : "keyword"
-				},
-				"geoip"	: {
-					"properties" : {
-						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
-					}
 				}
 			}
 		},
@@ -175,11 +167,6 @@
 				},
 				"F5_JSESSIONID": {
 					"type" : "keyword"
-				},
-				"geoip"	: {
-					"properties" : {
-						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
-					}
 				}
 			}
 		}
