@@ -1,8 +1,7 @@
-WLS_SRV_LOG <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem}> <%{DATA:Wls_Hostname}> <%{DATA:Wls_ManagedServer}> <%{DATA:Wls_ThreadId}> <([<]?)%{DATA:Wls_UserId}?([>]?)> <%{DATA:Wls_TransactionId}> <%{DATA:Wls_DiagnosticContextId}> <%{INT:Wls_Rawtime}> <%{DATA:Wls_MessageId}> <%{GREEDYDATA:Wls_MessageText}>
+WLS_SRV_LOG <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem}> <%{DATA:Wls_Hostname}> <%{DATA:Wls_ManagedServer}> <%{DATA:Wls_ThreadId}> <([<]?)%{DATA:Wls_UserId}?([>]?)> <%{DATA:Wls_TransactionId}> <%{DATA:Wls_DiagnosticContextId}> <%{NUMBER:Wls_Rawtime:int}> <%{DATA:Wls_MessageId}> <%{GREEDYDATA:Wls_MessageText}>
 WLS_ERR %{GREEDYDATA:Wls_Err}
 WLS_OUT <%{DATA:Wls_Timestamp}> <%{LOGLEVEL:Wls_Severity}> <%{DATA:Wls_Subsystem}> <%{DATA:Wls_MessageId}> %{GREEDYDATA:Wls_MessageText}
 WLS_ACCESS %{YEAR:WlsHttp_Year}[/-]%{MONTHNUM:WlsHttp_Month}[/-]%{MONTHDAY:WlsHttp_Day}[/\t]%{TIME:WlsHttp_Time}[/\t]%{IPV4:WlsHttp_SourceIp}[/\t]%{NUMBER:WlsHttp_StatusCode}[/\t]%{NUMBER:WlsHttp_RequestBytes}[/\t]%{NUMBER:WlsHttp_ResponseTime}[/\t]%{DATA:WlsHttp_Method}[/\t]%{GREEDYDATA:WlsHttp_Request}
-OSB_TIMESTAMP %{DAY:Day} %{MONTH:Month} %{MONTHDAY:MonthDay} %{TIME:Time} %{DATA:Timezone} %{YEAR:Year}
 OSB_SRV_LOG %{OSB_TIMESTAMP:Osb_Timestamp} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{GREEDYDATA:Osb_MessageText}
 NM_LOG1 <%{DATA:Nm_Timestamp}> <%{LOGLEVEL:Nm_Severity}> <%{DATA:Nm_DomainName}> <%{DATA:Wls_ManagedServer}> <%{GREEDYDATA:Wls_MessageText}>
 NM_LOG2 <%{DATA:Nm_Timestamp}> <%{LOGLEVEL:Nm_Severity}> <%{DATA:Nm_MessageText}>[/\n]%{GREEDYDATA:Nm_AdditionalText}
@@ -14,6 +13,7 @@ JAVA_GC2 \[%{DATA:JavaGC_Severity}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC3 \[%{DATA:JavaGC_Severity}\]\[%{DATA:JavaGC_Memory}\] %{GREEDYDATA:JavaGC_Message}
 JAVA_GC %{JAVA_GC1}|%{JAVA_GC2}|%{JAVA_GC3}
 NESTEDBRACKET .*?\[.*?\].*?
+OSB_TIMESTAMP %{DAY:Day} %{MONTH:Month} %{MONTHDAY:MonthDay} %{TIME:Time} %{DATA:Timezone} %{YEAR:Year}
 OSB_TIMESTAMP_2 %{YEAR}-%{MONTHNUM}-%{MONTHDAY}%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}[+-]%{DATA} %{DATA}
 OSBDIAG1 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{GREEDYDATA:Osb_MessageText}
 OSBDIAG2 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_Severity}\] \[%{DATA:Osb_Code}\] \[%{DATA:Osb_Class}\] \[%{NESTEDBRACKET:Osb_ThreadId}\] %{DATA:Osb_MessageText}%{SPACE}\[\[%{GREEDYDATA:Osb_Trace}\]\]
