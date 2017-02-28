@@ -23,7 +23,7 @@
 				"string_fields" : {
 					"match_pattern": "regex",
 					"match" : ".*",
-					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|.*_Timestamp",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|.*_[tT]imestamp2?",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "text", 
@@ -61,7 +61,7 @@
 			{
 				"timestamp_keywords" : {
 					"match_pattern": "regex",
-					"match" : ".*_Timestamp.",
+					"match" : ".*_[tT]imestamp2?",
 					"match_mapping_type" : "string",
 					"mapping" : {
 						"type" : "keyword",
