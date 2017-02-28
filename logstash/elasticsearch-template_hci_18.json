@@ -1,0 +1,219 @@
+{
+	"template" : "logstash-*",
+	"version" : 50002,
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"index.codec": "best_compression",
+		"number_of_shards": "20"
+	},
+	"mappings" : {
+		"_default_" : {
+			"_all" : {"enabled" : true, "norms" : false},
+			"dynamic_templates" : [ {
+				"message_field" : {
+					"path_match" : "message",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text",
+						"norms" : false,
+						"index_options": "docs"
+					}
+				}
+			}, {
+				"string_fields" : {
+					"match_pattern": "regex",
+					"match" : ".*",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|.*_Timestamp",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", 
+						"norms" : false,
+						"index_options": "docs"
+					}
+				}
+			},
+			{
+				"path_mixed" : {
+					"match" : "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", 
+						"norms" : false,
+						"index_options": "docs",
+						"fields" : {
+							"keyword" : { "type": "keyword", "ignore_above" : 256}
+						}
+					}
+				}
+			},
+			{
+				"shared_keywords" : {
+					"match_pattern": "regex",
+					"match" : "Unix_Hostname|Environment|Country|HCITRACE|worker",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "keyword",
+						"norms" : false,
+						"ignore_above" : 256
+					}
+				}
+			},
+			{
+				"timestamp_keywords" : {
+					"match_pattern": "regex",
+					"match" : ".*_Timestamp.",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "keyword",
+						"norms" : false,
+						"index": false
+					}
+				}
+			}
+			],
+			"properties" : {
+				"@timestamp": { "type": "date", "include_in_all": false },
+				"@version": { "type": "keyword", "include_in_all": false },
+				"geoip"	: {
+					"dynamic": true,
+					"properties" : {
+						"ip": { "type": "ip" },
+						"location" : { "type" : "geo_point" },
+						"latitude" : { "type" : "half_float" },
+						"longitude" : { "type" : "half_float" }
+					}
+				}
+			}
+		},
+		"wlserver": {
+			"properties" : {
+				"Wls_MessageId": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Wls_DiagnosticContextId": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Wls_ThreadId": {
+					"type" : "keyword",
+					"ignore_above" : 256,
+					"norms" : false,
+					"include_in_all": false
+				},
+				"Wls_ManagedServer": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Wls_Severity": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Wls_UserId": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				}
+			}
+		},
+		"osblog": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Osb_ThreadId": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256,
+					"include_in_all": false
+				},
+				"Osb_ManagedServer": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Osb_Severity": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				}
+			}
+		},
+		"hsapp" : {
+			"properties" : {
+				"App_thread" : {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256,
+					"include_in_all": false
+				}
+			}
+		},
+		"apache_access" : {
+			"properties" : {
+				"Apache_RemoteIp": { "type": "ip" },
+				"Apache_RequestUri": {
+					"type" : "text",
+					"norms" : false,
+					"index_options": "docs",
+					"fields" : {
+						"keyword" : {"type": "keyword", "norms" : false, "ignore_above" : 256}
+					}
+				},
+				"Apache_VirtualHost": {
+					"type" : "text",
+					"index_options": "docs",
+					"fields" : {
+						"keyword" : {"type": "keyword", "norms" : false, "ignore_above" : 256}
+					}
+				},
+				"Apache_JSESSIONID": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				},
+				"Apache_RequestVersion" : {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				}
+			}
+		},
+		"apache_error" : {
+			"properties" : {
+				"Apache_Client": { "type": "ip" }
+			}
+		},
+		"f5_access" : {
+			"properties" : {
+				"F5_RequestUri": {
+					"type" : "text",
+					"norms" : false,
+					"index_options": "docs",
+					"fields" : {
+						"keyword" : {"type": "keyword", "norms" : false, "ignore_above" : 256}
+					}
+				},
+				"F5_VirtualHost": {
+					"type" : "text",
+					"norms" : false,
+					"index_options": "docs",
+					"fields" : {
+						"keyword" : {"type": "keyword", "norms" : false,	"ignore_above" : 256}
+					}
+				},
+				"F5_JSESSIONID": {
+					"type" : "keyword",
+					"norms" : false,
+					"ignore_above" : 256
+				}
+			}
+		}
+	}
+}
