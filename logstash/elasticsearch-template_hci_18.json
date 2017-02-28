@@ -16,7 +16,7 @@
 					"mapping" : {
 						"type" : "text",
 						"norms" : false,
-						"index_options": "docs"
+						"index_options": "positions"
 					}
 				}
 			}, {
@@ -39,7 +39,7 @@
 					"mapping" : {
 						"type" : "text", 
 						"norms" : false,
-						"index_options": "docs",
+						"index_options": "positions",
 						"fields" : {
 							"keyword" : { "type": "keyword", "ignore_above" : 256}
 						}
