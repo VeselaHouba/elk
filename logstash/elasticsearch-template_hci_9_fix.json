@@ -3,7 +3,7 @@
 	"settings" : {
 		"index.refresh_interval" : "5s",
 		"index.codec": "best_compression",
-		"number_of_shards": "20"
+		"number_of_shards": "10"
 	},
 	"mappings" : {
 		"_default_": {
