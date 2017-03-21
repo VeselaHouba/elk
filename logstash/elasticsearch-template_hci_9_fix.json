@@ -1,0 +1,156 @@
+{
+	"template" : "logstash-*",
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"index.codec": "best_compression",
+		"number_of_shards": "20"
+	},
+	"mappings" : {
+		"_default_": {
+			"properties" : {
+				"path": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
+		"wlserver": {
+			"properties" : {
+				"Wls_MessageId": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
+		"osbtrace": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Osb_ManagedServer": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
+		"osblog": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Osb_ManagedServer": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				}
+			}
+		},
+		"apache_access" : {
+			"properties" : {
+				"Apache_RemoteIp": { "type": "ip" },
+				"Apache_RequestUri": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Apache_VirtualHost": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"Apache_JSESSIONID": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"geoip"	: {
+					"properties" : {
+						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				},
+				"HCITRACE": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				 "Apache_TimeTakenToServeUs": {
+       				"type": "long"
+      			},
+      			 "Apache_BytesReceived": {
+       				"type": "long"
+      			},
+      			 "Apache_StatusOriginal": {
+       				"type": "long"
+      			},
+      			 "Apache_BytesResponse": {
+       				"type": "long"
+      			},
+      			 "Apache_TimeTakenToServeS": {
+       				"type": "long"
+      			}
+			}
+		},
+		"f5_access" : {
+			"properties" : {
+				"F5_RequestUri": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"F5_VirtualHost": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"F5_JSESSIONID": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"HCITRACE": {
+					"type" : "string",
+					"fields" : {
+						"raw" : {"type": "string", "index" : "not_analyzed", "doc_values" : true, "ignore_above" : 256}
+					}
+				},
+				"geoip"	: {
+					"properties" : {
+						 "coordinates" : { "type" : "geo_point", "doc_values" : true }
+					}
+				},
+				 "F5_TimeTakenToServeMs": {
+       				"type": "long"
+      			},
+				 "F5_TimeTakenToServeUs": {
+       				"type": "long"
+      			},
+				 "F5_StatusOriginal": {
+       				"type": "long"
+      			},
+				 "F5_BytesReceived": {
+       				"type": "long"
+      			}
+			}
+		}
+	}
+}
