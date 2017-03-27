@@ -12,3 +12,4 @@ HSAPP_PATH2 /var/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
 HSAPP_PATH3 /log/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
 HSAPP_PATH %{HSAPP_PATH1}|%{HSAPP_PATH2}|%{HSAPP_PATH3}
 BLAZEAPP %{TIME:App_timestamp}%{SPACE}%{DATA:App_thread}%{SPACE}(?<App_level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:App_class} - %{GREEDYDATA:App_message}
+CIFAPP (?:%{TIMESTAMP_ISO8601:App_timestamp})%{SPACE}\[(?<App_thread>.*)\]%{SPACE}\[(?:%{DATA:App_messageId})\]%{SPACE}(?:%{LOGLEVEL:App_level})%{SPACE}(?:%{JAVACLASS:App_class})%{SPACE}\[%{DATA:HCITRACE}\]%{SPACE}(?:%{GREEDYDATA:App_message})%{SPACE}\(%{NUMBER:App_totalProcessingTime:int}/%{NUMBER:App_dbProcessinfTime:int}\)
