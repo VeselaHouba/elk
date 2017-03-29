@@ -1,0 +1,19 @@
+filebeat.prospectors:
+# CN homer
+- input_type: log
+  paths:
+    - /var/log/fmw/app/cn/*/*/*.log
+    - /var/log/fmw/app/cn/*/*/logs/*.log
+    - /var/log/fmw/app/cn/*/*/logs/*/*.log
+  document_type: "hsapp"
+    
+    
+# hosel
+- input_type: log
+  paths:
+    - /var/log/fmw/app/*/hosel/*/*.log
+    - /var/log/fmw/app/*/*/*/logs/*.log
+  multiline.pattern: '^%{YEAR}-%{MONTHNUM}-%{MONTHDAY} '
+  multiline.negate: true
+  multiline.match: after
+  document_type: "hsapp"

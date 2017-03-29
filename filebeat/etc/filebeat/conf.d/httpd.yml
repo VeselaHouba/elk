@@ -1,0 +1,11 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/httpd*/*access_log
+    - /var/log/httpd*/*access_log-*
+    - /data/var/log/httpd*/*access_log
+    - /data/var/log/httpd*/*access_log-*
+  exclude_files: [".gz$","^access_log","^access_log-"]
+  document_type: "apache_access"
+  
+# TODO: all paths, error logs
