@@ -5,6 +5,10 @@ files.keepfiles: 2
 filebeat:
   config_dir: /etc/filebeat/conf.d/
 
+fields:
+    Country: "DEV"
+fields_under_root: true
+
 output.redis:
   hosts: ["localhost"]
   key: "%{[type]}"
