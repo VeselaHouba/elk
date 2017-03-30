@@ -1,7 +1,8 @@
 filebeat.prospectors:
 - input_type: log
   paths:
-    - /var/log/fmw/app/*/*/*/logs/*.log*
+    - /var/log/fmw/app/*/hosel/*/*.log
+    - /var/log/fmw/app/*/*/*/logs/*.log
   document_type: "hsapp"
   multiline.pattern: '^\[0-9]{4}-[0-9]{2}-[0-9]{2} '
   multiline.negate: false
