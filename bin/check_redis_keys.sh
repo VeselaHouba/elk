@@ -19,3 +19,4 @@ do
 done
 header="=Key= =Lenght= =Difference=\n"
 echo -e $header$vals|column -t
+echo "###############################################################"
