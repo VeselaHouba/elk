@@ -1,7 +1,7 @@
 filebeat.prospectors:
 - input_type: log
   paths:
-    - var/fmw/domain/*/servers/*/logs/*.log
+    - /var/fmw/domain/*/servers/*/logs/*.log
     - /var/log/fmw/managedserver/*/server.log
     - /var/log/fmw/managedservers/*/server.log
     - /var/log/fmw/managedservers/*.log
