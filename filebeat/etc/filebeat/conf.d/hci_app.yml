@@ -18,7 +18,6 @@ filebeat.prospectors:
     "hibernate",
     "dblog"
   ]
-  tags: ["beats"]
   
   # Blaze logs
 - input_type: log
@@ -30,4 +29,4 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
-  tags: ["beats","blaze"]
+  tags: ["blaze"]
