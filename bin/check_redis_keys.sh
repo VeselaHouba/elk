@@ -4,7 +4,7 @@ uname -n
 uptime | grep -ohe 'load average[s:][: ].*' | awk '{ print $3" "$4" "$5 }'
 echo ""
 vals=""
-keys=$(redis-cli keys \* 2>/dev/null)
+keys=$(redis-cli keys \* 2>/dev/null|sort)
 for i in $keys; 
 do 
 	var=$(redis-cli debug OBJECT $i 2>/dev/null|awk '{print $5}'|cut -b 18-)
