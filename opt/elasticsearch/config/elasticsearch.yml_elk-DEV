@@ -95,3 +95,8 @@ http.cors.allow-origin: /https?:\/\/.+(:[0-9]+)?/
 # disk usage watermark
 cluster.routing.allocation.disk.watermark.low: 92%
 cluster.routing.allocation.disk.watermark.high: 95%
+
+
+#processors: 16
+#thread_pool.bulk.size: 16
+#thread_pool.bulk.queue_size: 300
