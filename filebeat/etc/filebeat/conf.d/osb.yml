@@ -12,8 +12,8 @@ filebeat.prospectors:
 - input_type: log
   document_type: "osblog"
   paths:
-    - /var/log/fmw/managedservers/*/osb.log.*
-    - /data/var/log/fmw/managedservers/*/osb.log.*
+    - /var/log/fmw/managedservers/*/osb.log.0
+    - /data/var/log/fmw/managedservers/*/osb.log.0
   exclude_files: [".lck"]
   ignore_older: 2h
   multiline.pattern: '^([0-9]{4}-[0-9]{2}-[0-9]{2}|(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?))'

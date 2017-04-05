@@ -4,7 +4,7 @@ filebeat.prospectors:
   paths:
     - /var/log/httpd*/*access_log
     - /data/var/log/httpd*/*access_log
-    - /data/var/log/httpd*/*access_log-*
+#    - /data/var/log/httpd*/*access_log-*
   # very important!
   ignore_older: 2h
   exclude_files: [".gz$","^access_log"]
