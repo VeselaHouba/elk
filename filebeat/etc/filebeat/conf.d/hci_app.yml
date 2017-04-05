@@ -17,7 +17,8 @@ filebeat.prospectors:
     "soap",
     "perf",
     "hibernate",
-    "dblog"
+    "dblog",
+    "db.[0-9]{4}-[0-9]{2}-[0-9]{2}.*.log"
   ]
   
   # Blaze logs
