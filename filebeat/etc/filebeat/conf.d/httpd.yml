@@ -1,0 +1,27 @@
+filebeat.prospectors:
+# apache access logs
+- input_type: log
+  paths:
+    - /var/log/httpd*/*access_log
+    - /data/var/log/httpd*/*access_log
+    - /data/var/log/httpd*/*access_log-*
+  # very important!
+  ignore_older: 2h
+  exclude_files: [".gz$","^access_log"]
+  document_type: "apache_access"
+  
+# apache errror logs
+- input_type: log
+  paths:
+    - /var/log/httpd*/*error_log
+    - /var/log/httpd*/*error_log-*
+    - /data/var/log/httpd*/*error_log
+    - /data/var/log/httpd*/*error_log-*
+  multiline.pattern: '(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)'
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  exclude_files: [".gz$","^error_log"]
+  document_type: "apache_error"
+  
+  
