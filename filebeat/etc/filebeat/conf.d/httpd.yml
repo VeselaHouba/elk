@@ -3,6 +3,7 @@ filebeat.prospectors:
 - input_type: log
   paths:
     - /var/log/httpd*/*access_log
+    - /var/log/httpd/*/access.log
     - /data/var/log/httpd*/*access_log
     - /data/var/log/httpd*/*access_log-*
   # very important!
