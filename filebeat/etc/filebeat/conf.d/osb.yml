@@ -21,3 +21,4 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
+  tags: ["split"]
