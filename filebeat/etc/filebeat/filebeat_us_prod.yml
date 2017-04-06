@@ -1,6 +1,7 @@
 logging.level: warning
-files.rotateeverybytes: 10485760
-files.keepfiles: 2
+logging.files:
+  rotateeverybytes: 10485760
+  keepfiles: 2
 
 filebeat:
   config_dir: /etc/filebeat/conf.d/
