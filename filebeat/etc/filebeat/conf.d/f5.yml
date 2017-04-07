@@ -1,0 +1,12 @@
+filebeat.prospectors:
+# f5 access logs
+- input_type: log
+  paths:
+    - /data/log/f5/*/*_http.log
+    - /data/log/f5/*/*_https.log
+    - /mnt/f5/cn-vx76/*/*_http.log
+    - /mnt/f5/cn-vx76/*/*_https.log
+  # very important!
+  ignore_older: 2h
+  exclude_files: [".gz$", ".zip$" ]
+  document_type: "f5_access"
