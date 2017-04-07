@@ -13,13 +13,11 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
-  #exclude_lines: ["^[0-9]{4}-[0-9]{2}-[0-9]{2} .* DEBUG"]
-  #exclude_files: [
+  exclude_files: [
     "soap",
     "perf",
     "hibernate",
-    "dblog",
-    "db.[0-9]{4}-[0-9]{2}-[0-9]{2}.*.log"
+    "dblog"
   ]
   
   # Blaze logs
