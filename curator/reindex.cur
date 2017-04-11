@@ -1,0 +1,14 @@
+actions:
+  1:
+    description: "Reindex index1 into index2"
+    action: reindex
+    options:
+      wait_interval: 9
+      max_wait: -1
+      request_body:
+        source:
+          index: logstash-2017.04.11
+        dest:
+          index: reindex_logstash-2017.04.11
+    filters:
+    - filtertype: none
