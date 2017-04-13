@@ -15,7 +15,8 @@ do
 	# save value
 	echo $var > /tmp/$i
 
-	vals=${vals}${i}" "${var}" "$(expr $var - $pvar)"\n"
+	perc=$(echo "($var -$pvar)*100/$pvar"|bc)
+	vals=${vals}${i}" "${var}" "$(expr $var - $pvar)" "$perc"%\n"
 done
 header="=Key= =Lenght= =Difference=\n"
 echo -e $header$vals|column -t
