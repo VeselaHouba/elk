@@ -7,8 +7,8 @@ actions:
       max_wait: -1
       request_body:
         source:
-          index: logstash-2017.04.11
+          index: logstash-2017.04.10
         dest:
-          index: reindex_logstash-2017.04.11
+          index: reindex_logstash-2017.04.10
     filters:
     - filtertype: none
