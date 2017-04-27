@@ -70,7 +70,7 @@ discovery.zen.ping.unicast.hosts: ["scnvx040.prod.itc.homecredit.cn", "scnvx041.
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
-discovery.zen.minimum_master_nodes: 3
+discovery.zen.minimum_master_nodes: 5
 #
 # For more information, see the documentation at:
 # <https://www.elastic.co/guide/en/elasticsearch/reference/5.0/modules-discovery-zen.html>
