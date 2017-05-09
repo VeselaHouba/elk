@@ -87,6 +87,9 @@
 				},
 				"Wls_UserId": {
 					"type" : "keyword"
+				},
+				"Wls_diag2": {
+					"type" : "keyword"
 				}
 			}
 		},
