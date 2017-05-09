@@ -19,6 +19,7 @@ filebeat.prospectors:
   paths:
     - /var/log/httpd*/*error_log
     - /var/log/httpd*/*error_log-*
+    - /var/log/httpd/*/*_error_log-*
     - /data/var/log/httpd*/*error_log
     - /data/var/log/httpd*/*error_log-*
   multiline.pattern: '(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)'
