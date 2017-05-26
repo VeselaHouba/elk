@@ -5,8 +5,8 @@ filebeat.prospectors:
     - /var/log/httpd*/*access_log
     - /var/log/httpd/*/*-access_log
     - /var/log/httpd/*/*_access_log
-    - /var/log/httpd/*/*-access.log
-    - /var/log/httpd/*/*_access.log
+    - /var/log/httpd/*/*-access.log-*
+    - /var/log/httpd/*/*_access.log-*
     - /data/var/log/httpd*/*access_log
     - /data/var/log/httpd*/*access_log-*
   # very important!
@@ -19,6 +19,7 @@ filebeat.prospectors:
   paths:
     - /var/log/httpd*/*error_log
     - /var/log/httpd*/*error_log-*
+    - /var/log/httpd/*/*_error_log-*
     - /data/var/log/httpd*/*error_log
     - /data/var/log/httpd*/*error_log-*
   multiline.pattern: '(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)'
