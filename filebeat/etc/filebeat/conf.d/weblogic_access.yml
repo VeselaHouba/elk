@@ -1,0 +1,6 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/fmw/virtualHosts/*/access.log
+  document_type: "wlsaccess"
+  exclude_lines: ['^#']
