@@ -9,3 +9,4 @@ local=$(uname -n)
 if [ $local = $target ] ;then
 	service elasticsearch restart &>/dev/null
 fi
+echo "restarted $target"|mail -s "CN restart" jan.michalek@embedit.cz
