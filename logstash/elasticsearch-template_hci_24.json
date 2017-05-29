@@ -96,7 +96,7 @@
 		"wlsaccess": {
 			"properties" : {
 				"Wla_TimeTakenToServe": {
-					"type" : "double"
+					"type" : "float"
 				},
 				"Wla_RequestUri": {
 					"type" : "keyword"
