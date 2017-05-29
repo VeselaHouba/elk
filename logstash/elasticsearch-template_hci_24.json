@@ -95,7 +95,7 @@
 		},
 		"wlsaccess": {
 			"properties" : {
-				"Wla_TimeTakenToServe": {
+				"Wla_TimeTakenToServeS": {
 					"type" : "float"
 				},
 				"Wla_RequestUri": {
