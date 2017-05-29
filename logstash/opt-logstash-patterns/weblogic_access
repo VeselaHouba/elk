@@ -1,2 +1,2 @@
 WLDATE %{YEAR}-%{MONTHNUM}-%{MONTHDAY}
-WLS_ACCESS %{WLDATE:Wla_Date}%{SPACE}%{TIME:Wla_Time}%{SPACE}%{IPORHOST:Wla_RemoteHost}%{SPACE}%{NUMBER:Wla_StatusOriginal:int}%{SPACE}%{NUMBER:Wla_BytesReceived:int}%{SPACE}%{NUMBER:Wla_TimeTakenToServeS:int}%{SPACE}%{DATA:Wla_RequestMethod}\t%{SPACE}%{GREEDYDATA:Wla_RequestUri}
+WLS_ACCESS %{WLDATE:Wla_Date}%{SPACE}%{TIME:Wla_Time}%{SPACE}%{IPORHOST:Wla_RemoteHost}%{SPACE}%{NUMBER:Wla_StatusOriginal:int}%{SPACE}%{NUMBER:Wla_BytesReceived:int}%{SPACE}%{NUMBER:Wla_TimeTakenToServeS}%{SPACE}%{DATA:Wla_RequestMethod}\t%{SPACE}%{GREEDYDATA:Wla_RequestUri}
