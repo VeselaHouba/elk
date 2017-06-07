@@ -7,6 +7,6 @@ target=scnvx04${HOUR}.prod.itc.homecredit.cn
 #echo $target
 local=$(uname -n)
 if [ $local = $target ] ;then
-	service elasticsearch restart &>/dev/null
-#	echo "restarted $target"|mail -s "CN restart" jan.michalek@embedit.cz
+	systemctl restart elasticsearch &>/dev/null
+	echo "restarted $target"|mail -s "CN restart" jan.michalek@embedit.cz
 fi
