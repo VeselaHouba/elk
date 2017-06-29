@@ -10,3 +10,17 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
+
+  # php logs
+- input_type: log
+  paths:
+    - /var/log/php-fpm/error.log
+    - /var/log/php-fpm/www-error.log
+    - /var/log/php-fpm/www-slow.log
+  document_type: "pki_php"
+  ignore_older: 2h
+  multiline.pattern: '^\[[0-9]{2}-'
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  
