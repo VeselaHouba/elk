@@ -6,12 +6,7 @@ filebeat.prospectors:
     - /var/www/api/logs/app.log
   document_type: "pki_app"
   ignore_older: 2h
-  multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+  multiline.pattern: '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
-  
-# TODO  
-#  - /var/log/php-fpm/error.log
-#    - /var/log/php-fpm/www-error.log
-#    - /var/log/php-fpm/www-slow.log
