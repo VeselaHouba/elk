@@ -1,4 +1,4 @@
 TIMESTAMP_PKI %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
 TIMESTAMP_PHP %{MONTHDAY}-%{MONTH}-%{YEAR} %{TIME}(%{DATA})?
 PKI_APP \[%{TIMESTAMP_PKI:Pki_Timestamp}\]%{SPACE}(\[%{DATA:Pki_UID}\])?%{SPACE}%{DATA:Pki_ClusterName}\.%{DATA:Pki_Severity}:%{SPACE}%{GREEDYDATA:Pki_Message}
-PKI_PHP \[%{TIMESTAMP_PHP:Pki_Timestamp}\]%{SPACE}(%{DATA:Pki_System} )?%{DATA:Pki_Severity}:%{SPACE}%{GREEDYDATA:Pki_Message}
+PKI_PHP \[%{TIMESTAMP_PHP:Pki_Timestamp}\]%{SPACE}%{DATA:Pki_Severity}:%{SPACE}%{GREEDYDATA:Pki_Message}
