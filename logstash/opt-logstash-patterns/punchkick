@@ -1,0 +1,2 @@
+TIMESTAMP_PKI %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
+PKI_APP \[%{TIMESTAMP_PKI:Pki_Timestamp}\]%{SPACE}(\[%{DATA:Pki_UID}\])?%{SPACE}%{DATA:Pki_ClusterName}\.%{DATA:Pki_Severity}:%{SPACE}%{GREEDYDATA:Pki_Message}
