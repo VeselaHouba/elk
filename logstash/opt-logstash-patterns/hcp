@@ -1,0 +1,2 @@
+TIMESTAMP_HCP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
+HCP_LOG %{TIMESTAMP_HCP:Hcp_Timestamp}\|%{LOGLEVEL:hcp_Severity}%{SPACE}\|%{DATA:Hcp_ThreadId}\|%{DATA:Hcp_Method}\|%{URIPATH:Hcp_RequestUri}\|%{DATA:Hcp_CorrelationId}\|(%{WORD:Hcp_CuId})?\|%{SPACE}%{DATA:Hcp_Class}%{SPACE}\|%{SPACE}%{GREEDYDATA:Hcp_Message}
