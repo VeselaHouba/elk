@@ -12,6 +12,6 @@ fields_under_root: true
 tags: ["filebeat"]
 
 output.redis:
-  hosts: ["localhost"]
+  hosts: ["logservice01.cz.nonprod"]
   key: "%{[type]}"
   timeout: 5
