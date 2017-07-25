@@ -17,7 +17,7 @@ filebeat.prospectors:
     - /data/var/log/fmw/managedservers/*/osb.log.0
     - /var/log/fmw/managedservers/*/osb.log.*
   exclude_files: [".lck"]
-  ignore_older: 2d
+  ignore_older: 24h
   multiline.pattern: '^([0-9]{4}-[0-9]{2}-[0-9]{2}|(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?))'
   multiline.negate: true
   multiline.match: after

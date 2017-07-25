@@ -12,4 +12,4 @@ filebeat.prospectors:
   multiline.max_lines: 1000
   exclude_files: ["access","-diagnostic","DefaultAuditRecorder"]
   document_type: "wlserver"
-  ignore_older: 2d
+  ignore_older: 24h
