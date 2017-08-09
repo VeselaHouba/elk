@@ -1,0 +1,82 @@
+{
+	"template" : "logstash-DEBUG-*",
+	"version" : 50002,
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"number_of_shards": "10"
+	},
+	"mappings" : {
+		"_default_" : {
+			"_all" : {"enabled" : true, "norms" : false},
+			"dynamic_templates" : [ {
+				"message_field" : {
+					"path_match" : "message",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text",
+						"norms" : false
+					}
+				}
+			}, {
+				"string_fields" : {
+					"match_pattern": "regex",
+					"match" : ".*",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false
+					}
+				}
+			},
+			{
+				"path_mixed" : {
+					"match" : "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false,
+						"fields" : {
+							"keyword" : { "type": "keyword" }
+						}
+					}
+				}
+			},
+			{
+				"shared_keywords" : {
+					"match_pattern": "regex",
+					"match" : "Unix_Hostname|Environment|Country|HCITRACE|worker|type",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "keyword"
+					}
+				}
+			}
+			],
+			"properties" : {
+				"@timestamp": { "type": "date" },
+				"@version": { "type": "keyword" },
+				"geoip"	: {
+					"dynamic": true,
+					"properties" : {
+						"ip": { "type": "ip" },
+						"location" : { "type" : "geo_point" },
+						"latitude" : { "type" : "half_float" },
+						"longitude" : { "type" : "half_float" }
+					}
+				}
+			}
+		},
+		"hsapp" : {
+			"properties" : {
+				"App_thread" : {
+					"type" : "keyword"
+				},
+				"App_timestamp" : {
+					"type" : "keyword"
+				},
+				"App_level" : {
+					"type" : "keyword"
+				}
+			}
+		}
+	}
+}
