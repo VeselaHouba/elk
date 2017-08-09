@@ -1,5 +1,6 @@
 {
-	"template" : "logstash_DEBUG-*",
+	"index" : "logstash-DEBUG-%{+YYYY.MM.dd}",
+	"template" : "logstash-DEBUG-*",
 	"version" : 50002,
 	"settings" : {
 		"index.refresh_interval" : "5s",
