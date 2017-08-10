@@ -17,8 +17,10 @@ filebeat.prospectors:
     "soap",
     "perf",
     "hibernate",
-    "dblog"
+    "dblog",
+    "dbsql"
   ]
+  # exclude_lines: ['] DEBUG']
   
   # Blaze logs
 - input_type: log
