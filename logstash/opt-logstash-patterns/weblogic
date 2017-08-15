@@ -26,3 +26,4 @@ OSBLOG02 \[%{TIMESTAMP_ISO8601:Osb_Timestamp}\] \[%{DATA:Osb_ManagedServer}\] \[
 OSB_SPLIT2 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
 OSB_SPLIT1 %{OSB_TIMESTAMP_2:Osb_Timestamp2} \[%{DATA:Osb_ManagedServer}\] \[%{DATA:Osb_ThreadId}\'] %{DATA:Osb_Severity} - %{GREEDYDATA:Osb_MessageText}
 OSB_SPLIT_LOG %{OSB_SPLIT1}|%{OSB_SPLIT2}
+JMS_LOG <%{DATA:Jms_Timestamp}> %{GREEDYDATA:Jms_body}
