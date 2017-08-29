@@ -214,7 +214,19 @@
 				},
 				"F5_JSESSIONID": {
 					"type" : "keyword"
-				}
+				},
+				"F5_TimeTakenToServeMs": {
+       				"type" : "float"
+      			},
+				 "F5_TimeTakenToServeUs": {
+       				"type" : "float"
+      			},
+				 "F5_StatusOriginal": {
+       				"type" : "float"
+      			},
+				 "F5_BytesReceived": {
+       				"type" : "float"
+      			}
 			}
 		}
 	}
