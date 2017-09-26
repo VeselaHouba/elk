@@ -9,6 +9,7 @@ filebeat.prospectors:
     - /var/log/httpd/*/*_access.log-*
     - /data/var/log/httpd*/*access_log
     - /data/var/log/httpd*/*access_log-*
+    - /var/log/httpd/*/*_access.log
   # very important!
   ignore_older: 2h
   exclude_files: [".gz$"]
