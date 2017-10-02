@@ -1,0 +1,10 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/fmw/managedservers/*/jms_server_*.log
+  multiline.pattern: '^####'
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  document_type: "jmserver"
+  ignore_older: 24h
