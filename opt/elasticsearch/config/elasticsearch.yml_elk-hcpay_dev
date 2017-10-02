@@ -14,7 +14,7 @@
 #
 # Use a descriptive name for your cluster:
 #
-cluster.name: elk-cn-prod
+cluster.name: elk-hcpay-dev
 #
 # ------------------------------------ Node ------------------------------------
 #
@@ -66,7 +66,7 @@ network.host: 0.0.0.0
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.zen.ping.unicast.hosts: ["scnvx040.prod.itc.homecredit.cn", "scnvx041.prod.itc.homecredit.cn", "scnvx042.prod.itc.homecredit.cn", "scnvx043.prod.itc.homecredit.cn", "scnvx044.prod.itc.homecredit.cn","scnvx045.prod.itc.homecredit.cn","scnvx046.prod.itc.homecredit.cn"]
+discovery.zen.ping.unicast.hosts: ["logservice02.cz.nonprod", "logservice03.cz.nonprod"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
