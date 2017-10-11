@@ -23,16 +23,6 @@ filebeat.prospectors:
   ]
   # exclude_lines: ['] DEBUG']
   
-  
-# Application access logs - US experian
-- input_type: log
-  paths:
-    - /var/log/fmw/app/*/*/*/access.log
-  document_type: "hsapp"
-  ignore_older: 2h
-  tags: ["access"]
-  
-  
   # Blaze logs
 - input_type: log
   paths:
