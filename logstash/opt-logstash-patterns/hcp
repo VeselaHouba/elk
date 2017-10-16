@@ -1,2 +1,2 @@
 TIMESTAMP_HCP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
-HCP_APP %{TIMESTAMP_HCP:Hcp_Timestamp}\|(%{LOGLEVEL:Hcp_Severity}%{SPACE})?\|(%{DATA:Hcp_ThreadId})?\|(%{DATA:Hcp_Method})?\|(%{URIPATH:Hcp_RequestUri})?\|(%{DATA:Hcp_CorrelationId})?\|(%{WORD:Hcp_CuId})?\|(%{SPACE}%{DATA:Hcp_Class}%{SPACE})?\|%{SPACE}%{GREEDYDATA:Hcp_Logmessage}
+HCP_APP %{TIMESTAMP_HCP:Hcp_Timestamp}\|(%{LOGLEVEL:Hcp_Severity}%{SPACE})?\|(%{DATA:Hcp_ThreadId})?\|(%{DATA:Hcp_Method})?\|(%{DATA:Hcp_RequestUri})?\|(%{DATA:Hcp_CorrelationId})?\|(%{WORD:Hcp_CuId})?\|(%{SPACE}%{DATA:Hcp_Class}%{SPACE})?\|%{SPACE}%{GREEDYDATA:Hcp_Logmessage}
