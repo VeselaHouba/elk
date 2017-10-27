@@ -18,7 +18,8 @@ filebeat.prospectors:
     "perf",
     "hibernate",
     "dblog",
-    "dbsql"
+    "dbsql",
+    "access"
   ]
   # exclude_lines: ['] DEBUG']
   
