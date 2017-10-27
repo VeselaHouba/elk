@@ -66,15 +66,7 @@ network.host: 0.0.0.0
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.zen.ping.unicast.hosts: [
-	"elk01.uslogs2.us.prod",
-	"elk02.uslogs2.us.prod",
-	"elk03.uslogs2.us.prod",
-	"elk04.uslogs2.us.prod",
-	"elk05.uslogs2.us.prod",
-	"elk06.uslogs2.us.prod",
-	"elk07.uslogs2.us.prod"
-	]
+discovery.zen.ping.unicast.hosts: ["elk01.uslogs2.us.prod","elk02.uslogs2.us.prod","elk03.uslogs2.us.prod","elk04.uslogs2.us.prod","elk05.uslogs2.us.prod","elk06.uslogs2.us.prod","elk07.uslogs2.us.prod"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
