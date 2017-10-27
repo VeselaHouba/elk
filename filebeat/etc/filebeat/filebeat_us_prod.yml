@@ -16,3 +16,10 @@ output.redis:
   hosts: ["pxy01-uslogs1.us.prod","pxy02-uslogs1.us.prod","pxy03-uslogs1.us.prod"]
   key: "%{[type]}"
   timeout: 5
+
+
+
+output.redis:
+  hosts: ["elk01.uslogs2.us.prod","elk02.uslogs2.us.prod","elk03.uslogs2.us.prod","elk04.uslogs2.us.prod","elk05.uslogs2.us.prod","elk06.uslogs2.us.prod","elk07.uslogs2.us.prod"]
+  key: "%{[type]}"
+  timeout: 5
