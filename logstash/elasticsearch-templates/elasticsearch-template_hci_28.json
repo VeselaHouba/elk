@@ -1,0 +1,252 @@
+{
+	"template" : "logstash-*",
+	"version" : 50003,
+	"settings" : {
+		"index.refresh_interval" : "5s",
+		"number_of_shards": "10"
+	},
+	"mappings" : {
+		"_default_" : {
+			"_all" : {"enabled" : true, "norms" : false},
+			"dynamic_templates" : [ {
+				"message_field" : {
+					"path_match" : "message",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text",
+						"norms" : false
+					}
+				}
+			}, {
+				"string_fields" : {
+					"match_pattern": "regex",
+					"match" : ".*",
+					"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false
+					}
+				}
+			},
+			{
+				"path_mixed" : {
+					"match" : "path",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "text", "norms" : false,
+						"fields" : {
+							"keyword" : { "type": "keyword" }
+						}
+					}
+				}
+			},
+			{
+				"shared_keywords" : {
+					"match_pattern": "regex",
+					"match" : "Unix_Hostname|Environment|Country|HCITRACE|worker|type",
+					"match_mapping_type" : "string",
+					"mapping" : {
+						"type" : "keyword"
+					}
+				}
+			}
+			],
+			"properties" : {
+				"@timestamp": { "type": "date" },
+				"@version": { "type": "keyword" },
+				"geoip"	: {
+					"dynamic": true,
+					"properties" : {
+						"ip": { "type": "ip" },
+						"location" : { "type" : "geo_point" },
+						"latitude" : { "type" : "half_float" },
+						"longitude" : { "type" : "half_float" }
+					}
+				}
+			}
+		},
+		"wlserver": {
+			"properties" : {
+				"Wls_MessageId": {
+					"type" : "keyword"
+				},
+				"Wls_DiagnosticContextId": {
+					"type" : "keyword"
+				},
+				"Wls_ThreadId": {
+					"type" : "keyword"
+				},
+				"Wls_Timestamp": {
+					"type" : "keyword"
+				},
+				"Wls_ManagedServer": {
+					"type" : "keyword"
+				},
+				"Wls_Severity": {
+					"type" : "keyword"
+				},
+				"Wls_UserId": {
+					"type" : "keyword"
+				},
+				"Wls_diag2": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"wlsaccess": {
+			"properties" : {
+				"Wla_TimeTakenToServeS": {
+					"type" : "float"
+				},
+				"Wla_RequestUri": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"osblog": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "keyword"
+				},
+				"Osb_ThreadId": {
+					"type" : "keyword"
+				},
+				"Osb_Timestamp2": {
+					"type" : "keyword"
+				},
+				"Osb_ManagedServer": {
+					"type" : "keyword"
+				},
+				"Osb_Severity": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"osbtrace": {
+			"properties" : {
+				"Osb_Code": {
+					"type" : "keyword"
+				},
+				"Osb_ThreadId": {
+					"type" : "keyword"
+				},
+				"Osb_Timestamp2": {
+					"type" : "keyword"
+				},
+				"Osb_ManagedServer": {
+					"type" : "keyword"
+				},
+				"Osb_Severity": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"hsapp" : {
+			"properties" : {
+				"App_thread" : {
+					"type" : "keyword"
+				},
+				"App_timestamp" : {
+					"type" : "keyword"
+				},
+				"App_level" : {
+					"type" : "keyword"
+				}
+			}
+		},
+		"hcp_app" : {
+			"properties" : {
+				"Hcp_Method" : {
+					"type" : "keyword"
+				},
+				"Hcp_RequestUri" : {
+					"type" : "keyword"
+				},
+				"Hcp_ThreadId" : {
+					"type" : "keyword"
+				},
+				"Hcp_Timestamp" : {
+					"type" : "keyword"
+				},
+				"Hcp_CorrelationId" : {
+					"type" : "keyword"
+				},
+				"Hcp_Class" : {
+					"type" : "keyword"
+				}
+			}
+		},
+		"apache_access" : {
+			"properties" : {
+				"Apache_RemoteIp": { "type": "ip" },
+				"Apache_RequestUri": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"Apache_VirtualHost": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"Apache_JSESSIONID": {
+					"type" : "keyword"
+				},
+				"Apache_Timestamp": {
+					"type" : "keyword"
+				},
+				"Apache_RequestVersion" : {
+					"type" : "keyword"
+				}
+			}
+		},
+		"apache_error" : {
+			"properties" : {
+				"Apache_Client": { "type": "ip" },
+				"Apache_Timestamp": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"jmserver" : {
+			"properties" : {
+				"Jms_Timestamp": {
+					"type" : "keyword"
+				}
+			}
+		},
+		"f5_access" : {
+			"properties" : {
+				"F5_RequestUri": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"F5_VirtualHost": {
+					"type" : "text",
+					"fields" : {
+						"keyword" : {"type": "keyword"}
+					}
+				},
+				"F5_JSESSIONID": {
+					"type" : "keyword"
+				},
+				"F5_TimeTakenToServeMs": {
+       				"type" : "float"
+      			},
+				 "F5_TimeTakenToServeUs": {
+       				"type" : "float"
+      			},
+				 "F5_StatusOriginal": {
+       				"type" : "float"
+      			},
+				 "F5_BytesReceived": {
+       				"type" : "float"
+      			}
+			}
+		}
+	}
+}
