@@ -27,5 +27,29 @@ actions:
       direction: older
       timestring: '%Y.%m.%d'
       unit: days
-      unit_count: 25
+      unit_count: 24
+      exclude:
+  2:
+    action: delete_indices
+    description: >-
+      Delete indices older than 27 days (based on index name), for logstash-
+      prefixed indices. Ignore the error if the filter does not result in an
+      actionable list of indices (ignore_empty_list) and exit cleanly.
+      !!! MW: Change unit_count if needed!!!
+    options:
+      ignore_empty_list: True
+      timeout_override: 120
+      continue_if_exception: False
+      disable_action: False
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: metricbeat-
+      exclude:
+    - filtertype: age
+      source: name
+      direction: older
+      timestring: '%Y.%m.%d'
+      unit: days
+      unit_count: 5
       exclude:
