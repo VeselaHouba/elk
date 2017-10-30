@@ -7,7 +7,7 @@ After=network-online.target
 [Service]
 WorkingDirectory=/opt/logstash
 # this variable is used in logstash config!
-Environment=HOSTNAME=$(hostname)
+Environment=HOSTNAME=%H
 
 User=logstash
 Group=logstash
