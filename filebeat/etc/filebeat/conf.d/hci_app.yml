@@ -19,7 +19,8 @@ filebeat.prospectors:
     "hibernate",
     "dblog",
     "dbsql",
-    "access"
+    "access",
+    "blaze"
   ]
   # exclude_lines: ['] DEBUG']
   
@@ -28,6 +29,8 @@ filebeat.prospectors:
   paths:
     - /var/log/fmw/app/us/de/*/blaze.log
     - /mnt/weblogic/acn-*_prod_de/blaze.log
+    - /var/log/fmw/app/cn/*/*/*.log
+    
   document_type: "hsapp"
   ignore_older: 2h
   multiline.pattern: '^[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{1,3} \['
