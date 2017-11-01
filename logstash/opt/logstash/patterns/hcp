@@ -1,5 +1,5 @@
 TIMESTAMP_HCP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
 TIMESTAMP_SAPP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}\/%{WORD}
-HCP_01 %{TIMESTAMP_HCP:Hcp_Timestamp}\|(%{LOGLEVEL:Hcp_Severity}%{SPACE})?\|(%{DATA:Hcp_ThreadId})?\|(%{DATA:Hcp_Method})?\|(%{DATA:Hcp_RequestUri})?\|(%{DATA:Hcp_CorrelationId})?\|(%{WORD:Hcp_CuId})?\|(%{SPACE}%{DATA:Hcp_Class}%{SPACE})?\|%{SPACE}%{GREEDYDATA:Hcp_Logmessage}
-HCP_SAPP %{TIMESTAMP_SAPP:Hcp_Timestamp} \[Correlation-Id: (%{DATA:Hcp_CorrelationId})?\] (%{LOGLEVEL:Hcp_Severity})? %{DATA:Hcp_Class} - %{GREEDYDATA:Hcp_Logmessage}
+HCP_01 %{TIMESTAMP_HCP:Hcp_Timestamp}\|(%{LOGLEVEL:Hcp_Severity}%{SPACE})?\|(%{DATA:Hcp_ThreadId})?\|(%{DATA:Hcp_Method})?\|(%{DATA:Hcp_RequestUri})?\|(%{DATA:CorrelationId})?\|(%{WORD:Hcp_CuId})?\|(%{SPACE}%{DATA:Hcp_Class}%{SPACE})?\|%{SPACE}%{GREEDYDATA:Hcp_Logmessage}
+HCP_SAPP %{TIMESTAMP_SAPP:Hcp_Timestamp} \[Correlation-Id: (%{DATA:CorrelationId})?\] (%{LOGLEVEL:Hcp_Severity})? %{DATA:Hcp_Class} - %{GREEDYDATA:Hcp_Logmessage}
 HCP_APP %{HCP_SAPP}|%{HCP_01}
