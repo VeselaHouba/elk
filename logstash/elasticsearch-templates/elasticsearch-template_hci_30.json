@@ -26,7 +26,7 @@
 					"string_fields": {
 						"match_pattern": "regex",
 						"match": ".*",
-						"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId",
+						"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "text",
@@ -52,7 +52,7 @@
 				{
 					"shared_keywords": {
 						"match_pattern": "regex",
-						"match": "Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId",
+						"match": "Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "keyword"
@@ -162,40 +162,12 @@
 				}
 			}
 		},
-		"hsapp": {
-			"properties": {
-				"App_thread": {
-					"type": "keyword"
-				},
-				"App_timestamp": {
-					"type": "keyword"
-				},
-				"App_level": {
-					"type": "keyword"
-				}
-			}
-		},
 		"hcp_app": {
 			"properties": {
 				"Method": {
 					"type": "keyword"
 				},
 				"RequestUri": {
-					"type": "keyword"
-				},
-				"ThreadId": {
-					"type": "keyword"
-				},
-				"Timestamp": {
-					"type": "keyword"
-				},
-				"CorrelationId": {
-					"type": "keyword"
-				},
-				"Class": {
-					"type": "keyword"
-				},
-				"Severity": {
 					"type": "keyword"
 				}
 			}
