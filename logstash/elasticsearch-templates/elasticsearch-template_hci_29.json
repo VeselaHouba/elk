@@ -194,6 +194,9 @@
 				},
 				"Hcp_Class": {
 					"type": "keyword"
+				},
+				"Hcp_Severity": {
+					"type": "keyword"
 				}
 			}
 		},
