@@ -1,0 +1,4 @@
+ORACLE_TIMESTAMP %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR}
+ORA_ALERT_LOG %{ORACLE_TIMESTAMP:Timestamp}(.|\r|\n)(?<LogMessage>(.|\r|\n)*)
+ORA_LISTENER_LOG %{ORACLE_TIMESTAMP:Timestamp}(.|\r|\n)(?<LogMessage>(.|\r|\n)*)
+ORA_LOG %{ORA_LISTENER_LOG}|%{ORA_ALERT_LOG}
