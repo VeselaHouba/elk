@@ -1,0 +1,11 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/diagnostic/alert_*.log
+    - /var/diagnostic/listener_*.log
+  multiline.pattern: '^[A-Z][a-z][a-z] [A-Z][a-z][a-z] [0-9][0-9]'
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  document_type: "oradb"
+  ignore_older: 24h
