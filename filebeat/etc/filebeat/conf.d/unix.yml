@@ -1,0 +1,11 @@
+filebeat.prospectors:
+- input_type: log
+  # simple files with one event per line
+  paths:
+    - /var/log/messages
+    - /var/log/pacemaker.log
+    - /var/log/cron
+    - /var/log/secure
+  document_type: "unix"
+  exclude_files: [".gz$", ".zip$" ]
+  ignore_older: 24h
