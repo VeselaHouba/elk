@@ -178,12 +178,7 @@
 					"type": "ip"
 				},
 				"RequestUri": {
-					"type": "text",
-					"fields": {
-						"keyword": {
-							"type": "keyword"
-						}
-					}
+					"type": "keyword"
 				},
 				"VirtualHost": {
 					"type": "text",
@@ -271,12 +266,7 @@
 		"f5_access": {
 			"properties": {
 				"RequestUri": {
-					"type": "text",
-					"fields": {
-						"keyword": {
-							"type": "keyword"
-						}
-					}
+					"type": "keyword"
 				},
 				"VirtualHost": {
 					"type": "text",
