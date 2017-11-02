@@ -290,6 +290,9 @@
 				},
 				"BytesReceived": {
 					"type": "float"
+				},
+				"RequestVersion": {
+					"type": "keyword"
 				}
 			}
 		}
