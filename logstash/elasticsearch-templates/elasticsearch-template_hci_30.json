@@ -174,10 +174,10 @@
 		},
 		"apache_access": {
 			"properties": {
-				"Apache_RemoteIp": {
+				"RemoteIp": {
 					"type": "ip"
 				},
-				"Apache_RequestUri": {
+				"RequestUri": {
 					"type": "text",
 					"fields": {
 						"keyword": {
@@ -185,7 +185,7 @@
 						}
 					}
 				},
-				"Apache_VirtualHost": {
+				"VirtualHost": {
 					"type": "text",
 					"fields": {
 						"keyword": {
@@ -193,13 +193,13 @@
 						}
 					}
 				},
-				"Apache_JSESSIONID": {
+				"JSESSIONID": {
 					"type": "keyword"
 				},
-				"Apache_Timestamp": {
+				"Timestamp": {
 					"type": "keyword"
 				},
-				"Apache_RequestVersion": {
+				"RequestVersion": {
 					"type": "keyword"
 				},
 				"geoip": {
@@ -253,10 +253,10 @@
 		},
 		"apache_error": {
 			"properties": {
-				"Apache_Client": {
+				"Client": {
 					"type": "ip"
 				},
-				"Apache_Timestamp": {
+				"Timestamp": {
 					"type": "keyword"
 				}
 			}
@@ -270,7 +270,7 @@
 		},
 		"f5_access": {
 			"properties": {
-				"F5_RequestUri": {
+				"RequestUri": {
 					"type": "text",
 					"fields": {
 						"keyword": {
@@ -278,7 +278,7 @@
 						}
 					}
 				},
-				"F5_VirtualHost": {
+				"VirtualHost": {
 					"type": "text",
 					"fields": {
 						"keyword": {
@@ -286,19 +286,19 @@
 						}
 					}
 				},
-				"F5_JSESSIONID": {
+				"JSESSIONID": {
 					"type": "keyword"
 				},
-				"F5_TimeTakenToServeMs": {
+				"TimeTakenToServeMs": {
 					"type": "float"
 				},
-				"F5_TimeTakenToServeUs": {
+				"TimeTakenToServeUs": {
 					"type": "float"
 				},
-				"F5_StatusOriginal": {
+				"StatusOriginal": {
 					"type": "float"
 				},
-				"F5_BytesReceived": {
+				"BytesReceived": {
 					"type": "float"
 				}
 			}
