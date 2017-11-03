@@ -88,28 +88,28 @@
 		},
 		"wlserver": {
 			"properties": {
-				"Wls_MessageId": {
+				"MessageId": {
 					"type": "keyword"
 				},
-				"Wls_DiagnosticContextId": {
+				"DiagnosticContextId": {
 					"type": "keyword"
 				},
-				"Wls_ThreadId": {
+				"ThreadId": {
 					"type": "keyword"
 				},
-				"Wls_Timestamp": {
+				"Timestamp": {
 					"type": "keyword"
 				},
-				"Wls_ManagedServer": {
+				"ManagedServer": {
 					"type": "keyword"
 				},
-				"Wls_Severity": {
+				"Severity": {
 					"type": "keyword"
 				},
-				"Wls_UserId": {
+				"UserId": {
 					"type": "keyword"
 				},
-				"Wls_diag2": {
+				"diag2": {
 					"type": "keyword"
 				}
 			}
@@ -126,38 +126,38 @@
 		},
 		"osblog": {
 			"properties": {
-				"Osb_Code": {
+				"Code": {
 					"type": "keyword"
 				},
-				"Osb_ThreadId": {
+				"ThreadId": {
 					"type": "keyword"
 				},
-				"Osb_Timestamp2": {
+				"Timestamp": {
 					"type": "keyword"
 				},
-				"Osb_ManagedServer": {
+				"ManagedServer": {
 					"type": "keyword"
 				},
-				"Osb_Severity": {
+				"Severity": {
 					"type": "keyword"
 				}
 			}
 		},
 		"osbtrace": {
 			"properties": {
-				"Osb_Code": {
+				"Code": {
 					"type": "keyword"
 				},
-				"Osb_ThreadId": {
+				"ThreadId": {
 					"type": "keyword"
 				},
-				"Osb_Timestamp2": {
+				"Timestamp": {
 					"type": "keyword"
 				},
-				"Osb_ManagedServer": {
+				"ManagedServer": {
 					"type": "keyword"
 				},
-				"Osb_Severity": {
+				"Severity": {
 					"type": "keyword"
 				}
 			}
