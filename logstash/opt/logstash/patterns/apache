@@ -4,7 +4,7 @@ APACHE_ACCESS_LOG3 \[%{APACHE_TIMESTAMP_OTHER:Timestamp}\] \[%{LOGLEVEL:Severity
 APACHE_ACCESS_LOG4 %{HOST:VirtualHost} %{IP:RemoteIp}.*\[%{HTTPDATE:Timestamp}\] \[duration: (-|%{NUMBER:TimeTakenToServeMs:int}) (ms|us) \((-|%{NUMBER:TimeTakenToServeS:int}) s\)\] \"%{DATA:RequestMethod} %{DATA:RequestUri}" (-|%{NUMBER:StatusOriginal:int}) (-|%{NUMBER:BytesReceived:int}) "%{DATA:UserAgent}" \(SID=%{DATA:SID}\) bytes sent:%{NUMBER:BytesSent}
 APACHE_ERROR_LOG1 \[%{APACHE_TIMESTAMP_OTHER:Timestamp}\] \[%{LOGLEVEL:Severity}\] \[client %{DATA:Client}\] %{GREEDYDATA:MessageText}
 APACHE_ERROR_LOG2 \[%{APACHE_TIMESTAMP_OTHER:Timestamp}\] \[%{LOGLEVEL:Severity}\] %{GREEDYDATA:MessageText}
-APACHE_ERROR_LOG3 \[%{APACHE_TIMESTAMP_OTHER:Timestamp}\] \[%{DATA}\:%{LOGLEVEL:Severity}\] \[pid %{NUMBER:pid}\] %{GREEDYDATA:MessageText}
+APACHE_ERROR_LOG3 \[%{APACHE_TIMESTAMP_OTHER:Timestamp}\] \[%{DATA}\:%{LOGLEVEL:Severity}\] \[pid %{NUMBER:pid:int}\] %{GREEDYDATA:MessageText}
 APACHE_TIMESTAMP_OTHER %{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR}
 APACHE_ACCESS_LOG %{APACHE_ACCESS_LOG2}|%{APACHE_ACCESS_LOG3}|%{APACHE_ACCESS_LOG1}
 APACHE_ACCESS_LOG_US %{APACHE_ACCESS_LOG1}|%{APACHE_ACCESS_LOG2}|%{APACHE_ACCESS_LOG3}|%{APACHE_ACCESS_LOG4}
