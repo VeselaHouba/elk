@@ -66,7 +66,7 @@ network.host: 0.0.0.0
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.zen.ping.unicast.hosts: ["scnvx040.prod.itc.homecredit.cn", "scnvx041.prod.itc.homecredit.cn", "scnvx042.prod.itc.homecredit.cn", "scnvx043.prod.itc.homecredit.cn", "scnvx044.prod.itc.homecredit.cn","scnvx045.prod.itc.homecredit.cn","scnvx046.prod.itc.homecredit.cn"]
+discovery.zen.ping.unicast.hosts: ["pscnsx580.cn.prod","pscnsx581.cn.prod","pscnsx582.cn.prod","pscnsx583.cn.prod","pscnsx584.cn.prod","pscnsx585.cn.prod","pscnsx586.cn.prod","pscnsx587.cn.prod","pscnsx588.cn.prod","pscnsx589.cn.prod"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
