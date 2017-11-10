@@ -26,7 +26,7 @@
 					"string_fields": {
 						"match_pattern": "regex",
 						"match": ".*",
-						"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint",
+						"unmatch": "path|Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "text",
@@ -52,7 +52,7 @@
 				{
 					"shared_keywords": {
 						"match_pattern": "regex",
-						"match": "Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint",
+						"match": "Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "keyword"
@@ -100,9 +100,6 @@
 				"Timestamp": {
 					"type": "keyword"
 				},
-				"ManagedServer": {
-					"type": "keyword"
-				},
 				"Severity": {
 					"type": "keyword"
 				},
@@ -135,9 +132,6 @@
 				"Timestamp": {
 					"type": "keyword"
 				},
-				"ManagedServer": {
-					"type": "keyword"
-				},
 				"Severity": {
 					"type": "keyword"
 				}
@@ -152,9 +146,6 @@
 					"type": "keyword"
 				},
 				"Timestamp": {
-					"type": "keyword"
-				},
-				"ManagedServer": {
 					"type": "keyword"
 				},
 				"Severity": {
