@@ -29,7 +29,7 @@ filebeat.prospectors:
   paths:
     - /var/log/fmw/app/us/de/*/blaze.log
     - /mnt/weblogic/acn-*_prod_de/blaze.log
-    - /var/log/fmw/app/cn/*/*/*.log
+    - /var/log/fmw/app/cn/de/*/*.log
     
   document_type: "hsapp"
   ignore_older: 2h
