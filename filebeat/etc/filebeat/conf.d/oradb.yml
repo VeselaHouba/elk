@@ -9,6 +9,8 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
-  document_type: "oradb"
+  fields:
+    type: "oradb"
+  fields_under_root: true
   exclude_files: [".gz$", ".zip$" ]
   ignore_older: 24h

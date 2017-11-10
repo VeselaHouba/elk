@@ -4,7 +4,9 @@ filebeat.prospectors:
   paths:
     - /var/log/hcp/pay.log
     - /var/log/httpd/sapp/logs/*/*.log
-  document_type: "hcp_app"
+  fields:
+    type: "hcp_app"
+  fields_under_root: true
   ignore_older: 2h
   multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
   multiline.negate: true

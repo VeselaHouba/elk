@@ -13,7 +13,9 @@ filebeat.prospectors:
   # very important!
   ignore_older: 2h
   exclude_files: [".gz$"]
-  document_type: "apache_access"
+  fields:
+    type: "apache_access"
+  fields_under_root: true
   
 # apache errror logs
 - input_type: log
@@ -28,7 +30,9 @@ filebeat.prospectors:
   multiline.match: after
   multiline.max_lines: 1000
   exclude_files: [".gz$","^error_log"]
-  document_type: "apache_error"
+  fields:
+    type: "apache_error"
+  fields_under_root: true
   
   # Application access logs - US experian
 - input_type: log

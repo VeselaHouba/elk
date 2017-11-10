@@ -1,6 +1,8 @@
 filebeat.prospectors:
 - input_type: log
-  document_type: "osbtrace"
+  fields:
+    type: "osbtrace"
+  fields_under_root: true"
   paths:
     - /var/log/fmw/managedservers/*/osb_debug.log.0
   ignore_older: 2h
@@ -11,7 +13,9 @@ filebeat.prospectors:
   tags: ["split"]
   
 - input_type: log
-  document_type: "osblog"
+  fields:
+    type: "osblog"
+  fields_under_root: true
   paths:
     - /var/log/fmw/managedservers/*/osb.log.0
     - /data/var/log/fmw/managedservers/*/osb.log.0
