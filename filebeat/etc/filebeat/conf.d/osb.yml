@@ -2,7 +2,7 @@ filebeat.prospectors:
 - input_type: log
   fields:
     type: "osbtrace"
-  fields_under_root: true"
+  fields_under_root: true
   paths:
     - /var/log/fmw/managedservers/*/osb_debug.log.0
   ignore_older: 2h
