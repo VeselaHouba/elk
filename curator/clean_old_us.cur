@@ -27,7 +27,7 @@ actions:
       direction: older
       timestring: '%Y.%m.%d'
       unit: days
-      unit_count: 24
+      unit_count: 30
       exclude:
   2:
     action: delete_indices
@@ -75,7 +75,7 @@ actions:
       direction: older
       timestring: '%Y.%m.%d.%H'
       unit: days
-      unit_count: 24
+      unit_count: 30
       exclude:
   4:
     action: delete_indices
@@ -99,6 +99,6 @@ actions:
       direction: older
       timestring: '%Y.%m.%d.%H'
       unit: days
-      unit_count: 24
+      unit_count: 5
       exclude:
       
