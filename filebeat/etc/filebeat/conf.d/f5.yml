@@ -11,4 +11,7 @@ filebeat.prospectors:
   # very important!
   ignore_older: 2h
   exclude_files: [".gz$", ".zip$" ]
-  document_type: "f5_access"
+  fields:
+    type: "f5_access"
+  fields_under_root: true
+  

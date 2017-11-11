@@ -6,5 +6,7 @@ filebeat.prospectors:
   multiline.negate: true
   multiline.match: after
   multiline.max_lines: 1000
-  document_type: "jmserver"
+  fields:
+    type: "jmserver"
+  fields_under_root: true
   ignore_older: 24h

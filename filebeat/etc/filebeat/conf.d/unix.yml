@@ -6,6 +6,8 @@ filebeat.prospectors:
     - /var/log/pacemaker.log
     - /var/log/cron
     - /var/log/secure
-  document_type: "unix"
+  fields:
+    type: "unix"
+  fields_under_root: true
   exclude_files: [".gz$", ".zip$" ]
   ignore_older: 24h
