@@ -52,11 +52,7 @@
 				{
 					"shared_keywords": {
 						"match_pattern": "regex",
-<<<<<<< HEAD
-						"match": "Unix_Hostname|Environment|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
-=======
-						"match": "Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint",
->>>>>>> refs/heads/CN_PROD_v2
+						"match": "path|Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "keyword"
