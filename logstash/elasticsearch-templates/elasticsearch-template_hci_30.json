@@ -26,7 +26,7 @@
 					"string_fields": {
 						"match_pattern": "regex",
 						"match": ".*",
-						"unmatch": "path|Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
+						"unmatch": "path|Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "text",
@@ -52,7 +52,7 @@
 				{
 					"shared_keywords": {
 						"match_pattern": "regex",
-						"match": "path|Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer",
+						"match": "path|Unix_Hostname|Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "keyword"
@@ -113,11 +113,8 @@
 		},
 		"wlsaccess": {
 			"properties": {
-				"Wla_TimeTakenToServeS": {
+				"TimeTakenToServeS": {
 					"type": "float"
-				},
-				"Wla_RequestUri": {
-					"type": "keyword"
 				}
 			}
 		},
@@ -157,9 +154,6 @@
 			"properties": {
 				"Method": {
 					"type": "keyword"
-				},
-				"RequestUri": {
-					"type": "keyword"
 				}
 			}
 		},
@@ -167,9 +161,6 @@
 			"properties": {
 				"RemoteIp": {
 					"type": "ip"
-				},
-				"RequestUri": {
-					"type": "keyword"
 				},
 				"VirtualHost": {
 					"type": "text",
@@ -256,9 +247,6 @@
 		},
 		"f5_access": {
 			"properties": {
-				"RequestUri": {
-					"type": "keyword"
-				},
 				"VirtualHost": {
 					"type": "text",
 					"fields": {

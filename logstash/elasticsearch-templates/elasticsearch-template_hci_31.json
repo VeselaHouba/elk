@@ -1,0 +1,137 @@
+{
+	"template": "logstash-*",
+	"version": 1,
+	"settings": {
+		"index.refresh_interval": "5s",
+		"number_of_shards": "10"
+	},
+	"mappings": {
+		"_default_": {
+			"_all": {
+				"enabled": true,
+				"norms": false
+			},
+			"dynamic_templates": [
+				{
+					"strings_as_keyword": {
+						"match_mapping_type": "string",
+						"mapping": {
+							"norms": false,
+							"ignore_above": 1024,
+							"type": "keyword"
+						}
+					}
+				}
+	        ],
+			"properties": {
+				"@timestamp": {
+					"type": "date"
+				},
+				"@version": {
+					"type": "keyword"
+				},
+				"geoip": {
+					"dynamic": true,
+					"properties": {
+						"ip": {
+							"type": "ip"
+						},
+						"location": {
+							"type": "geo_point"
+						},
+						"latitude": {
+							"type": "half_float"
+						},
+						"longitude": {
+							"type": "half_float"
+						}
+					}
+				}
+			}
+		},
+		"wlsaccess": {
+			"properties": {
+				"TimeTakenToServeS": {
+					"type": "float"
+				}
+			}
+		},
+		"apache_access": {
+			"properties": {
+				"RemoteIp": {
+					"type": "ip"
+				},
+				"geoip": {
+					"dynamic": "true",
+					"properties": {
+						"timezone": {
+							"type": "keyword"
+						},
+						"ip": {
+							"type": "ip"
+						},
+						"latitude": {
+							"type": "half_float"
+						},
+						"continent_code": {
+							"type": "keyword"
+						},
+						"city_name": {
+							"type": "keyword"
+						},
+						"country_code2": {
+							"type": "keyword"
+						},
+						"country_name": {
+							"type": "keyword"
+						},
+						"dma_code": {
+							"type": "long"
+						},
+						"country_code3": {
+							"type": "keyword"
+						},
+						"location": {
+							"type": "geo_point"
+						},
+						"region_name": {
+							"type": "keyword"
+						},
+						"postal_code": {
+							"type": "keyword"
+						},
+						"longitude": {
+							"type": "half_float"
+						},
+						"region_code": {
+							"type": "keyword"
+						}
+					}
+				}
+			}
+		},
+		"apache_error": {
+			"properties": {
+				"Client": {
+					"type": "ip"
+				}
+			}
+		},
+		"f5_access": {
+			"properties": {
+				"TimeTakenToServeMs": {
+					"type": "float"
+				},
+				"TimeTakenToServeUs": {
+					"type": "float"
+				},
+				"StatusOriginal": {
+					"type": "float"
+				},
+				"BytesReceived": {
+					"type": "float"
+				}
+			}
+		}
+	}
+}
