@@ -6,7 +6,7 @@ HSAPP1 %{HSAPP1c}|%{HSAPP1b}|%{HSAPP1a}
 HSAPP2 (%{TIMESTAMP_ISO8601:Timestamp}%{SPACE}\[(?<ThreadId>.*)\]%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\s+%{NOTSPACE:Class}%{SPACE}%{SPACE}%{GREEDYDATA:LogMessage}(?<StackTrace>(.|\r|\n)*))
 HSAPP3a %{TIMESTAMP_ISO8601:Timestamp}%{SPACE}\[(?<ThreadId>.*)\]%{SPACE}%{NOTSPACE:Class}%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{SPACE}-%{SPACE}%{GREEDYDATA:LogMessage}\[%{DATA:AppServer}\]
 HSAPP3b (%{TIMESTAMP_ISO8601:Timestamp}%{SPACE}%{NOTSPACE:Class}%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{GREEDYDATA:LogMessage}%{SPACE}\[(?<ThreadId>.*)\])
-HSAPP3c (%{TIMESTAMP_ISO8601:Timestamp}%{SPACE}(?<REST>(.|\r|\n)*))
+HSAPP3c (%{TIMESTAMP_ISO8601:Timestamp}%{SPACE}(?<LogMessage>(.|\r|\n)*))
 HSAPP3  %{CIFAPP}|%{HSAPP3a}|%{HSAPP3b}|%{HSAPP3c}
 HSAPP_PATH1 /var/log/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
 HSAPP_PATH2 /var/fmw/app/%{DATA}/%{DATA:APP}/%{GREEDYDATA}
