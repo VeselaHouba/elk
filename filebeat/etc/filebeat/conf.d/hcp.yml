@@ -4,10 +4,12 @@ filebeat.prospectors:
   paths:
     - /var/log/hcp/pay.log
     - /var/log/httpd/sapp/logs/*/*.log
+    # mapp
+    - /var/log/fmw/app/cn/*/application.log
   fields:
     type: "hcp_app"
   fields_under_root: true
-  ignore_older: 2h
+  ignore_older: 24h
   multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
   multiline.negate: true
   multiline.match: after
