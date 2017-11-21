@@ -1,0 +1,47 @@
+---
+- name: Install & configure filebeat
+  #become: true
+  hosts: servers
+  tasks: 
+    - name: Copy rpm file to server
+      copy:
+         src: /root/install/filebeat-5.6.3-x86_64.rpm
+         dest: /tmp/filebeat-5.6.3-x86_64.rpm
+    
+    - name: Install package.
+      yum:
+         name: /tmp/filebeat-5.6.3-x86_64.rpm
+         state: present
+
+    - name : Sync shared config
+      synchronize: 
+        src: /opt/elk/filebeat/etc/filebeat/conf.d/
+        dest: /etc/filebeat/conf.d/
+      notify: 
+        #- Restart filebeat
+        - Cleanup filebeat
+
+    - name : Sync environment specific config
+      synchronize: 
+        src: /opt/elk/filebeat/etc/filebeat/filebeat_cn_nonprod_tj.yml
+        dest: /etc/filebeat/filebeat.yml
+        archive: yes
+        delete: yes
+    
+    - name: Start filebeat service
+      service:
+        name: filebeat
+        state: started
+
+  handlers:
+    #- name: Rescan files
+    #  listen: Cleanup filebeat
+    #  file: 
+    #    path: /var/lib/filebeat/registry
+    #    state: absent 
+
+    - name: Restart filebeat
+      listen: Cleanup filebeat
+      service: 
+        name: filebeat
+        state: restarted 
