@@ -1,10 +1,8 @@
 filebeat.prospectors:
 - input_type: log
   paths:
-    - /var/diagnostic/alert_*.log
-    - /var/diagnostic/listener_*.log
-    - /var/diagnostic/alert_*.log-*
-    - /var/diagnostic/listener_*.log-*
+    #- /u01/app/12.1.0/grid/log/dussx001/alertdussx001.log
+    - /u01/app/*/*/*/*/alert*.log
   multiline.pattern: '^[A-Z][a-z][a-z] [A-Z][a-z][a-z] [0-9][0-9]'
   multiline.negate: true
   multiline.match: after
