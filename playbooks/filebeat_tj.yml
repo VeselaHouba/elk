@@ -23,7 +23,7 @@
 
     - name : Sync environment specific config
       synchronize: 
-        src: /opt/elk/filebeat/etc/filebeat/filebeat_cn_nonprod_tj.yml
+        src: /opt/elk/filebeat/etc/filebeat/filebeat_cn_prod_tj.yml
         dest: /etc/filebeat/filebeat.yml
         archive: yes
         delete: yes

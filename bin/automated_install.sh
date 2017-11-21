@@ -5,17 +5,17 @@
 # - java installed and linked to /opt/java
 # - all install packages in machines (/root/install/)
 # - enabled / disabled parameters below ( especially FS preparation )
+# - /opt/elk in place
 
 
-yum install git -y
 export VERSION=5.6.3
 export COUNTRY=CN_PROD_TJ
 # prepare FS (cn specific)
-PREPAREFS=yes
+PREPAREFS=no
 # prepare OS - run only once
-PREPAREOS=no
+PREPAREOS=yes
 # install / update sw - repeatable
-INSTALL=no
+INSTALL=yes
 ################### /config ###############
 
 
@@ -40,6 +40,11 @@ if [ $PREPAREFS == "yes" ];then
 	mount /opt
 fi
 
+if [ $PREPAREOS == "yes" ];then
+	yum install git -y
+	ln -sf /opt/elk/etc/cron.d/elk /etc/cron.d/elk
+	service crond reload
+fi
 
 ################### elasticsearch ####################
 if [ $PREPAREOS == "yes" ];then
