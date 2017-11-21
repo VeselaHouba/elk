@@ -5,7 +5,6 @@ filebeat.prospectors:
     - /var/log/fmw/app/*/hosel/*/*.log
     - /var/log/fmw/app/*/*/*/logs/*.log
     - /var/log/fmw/app/cn/*/*/*.log
-    - /var/log/fmw/app/cn/*/*/logs/*.log
     - /var/log/fmw/app/cn/*/*/logs/*/*.log
   fields:
     type: "hsapp"
@@ -23,7 +22,9 @@ filebeat.prospectors:
     "dblog",
     "dbsql",
     "access",
-    "blaze"
+    "blaze",
+    "mcd",
+    "boss"
   ]
   # exclude_lines: ['] DEBUG']
   

@@ -6,6 +6,10 @@ filebeat.prospectors:
     - /var/log/httpd/sapp/logs/*/*.log
     # mapp 
     - /var/log/fmw/app/cn/*/*.log
+    # mcd - watchout for mixing with hsapp prospector
+    -	/var/log/fmw/app/cn/mcd-*/*/logs/*.log
+    # boss
+    - /var/log/fmw/app/cn/boss/*/logs/*.log
   fields:
     type: "hcp_app"
   fields_under_root: true
