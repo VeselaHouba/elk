@@ -1,0 +1,17 @@
+logging.level: warning
+files.rotateeverybytes: 10485760
+files.keepfiles: 2
+
+filebeat:
+  config_dir: /etc/filebeat/conf.d/
+
+fields:
+    Country: "CN"
+    Environment: "PROD"
+fields_under_root: true
+tags: ["filebeat"]
+
+output.redis:
+  hosts: ["pdcnsx012.cn.prod","pdcnsx013.cn.prod","pdcnsx014.cn.prod","pdcnsx015.cn.prod","pdcnsx016.cn.prod","pdcnsx017.cn.prod","pdcnsx018.cn.prod","pdcnsx019.cn.prod","pdcnsx020.cn.prod","pdcnsx021.cn.prod"]
+  key: "%{[type]}"
+  timeout: 5
