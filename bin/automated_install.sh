@@ -72,6 +72,7 @@ if [ $PREPAREOS == "yes" ];then
 	useradd -m redis -g 1101 -u 1101
 	cd /opt
 	tar xzf ~/install/redis.tar.gz
+	ln -sf /opt/elk/redis/redis.conf /opt/redis/redis.conf
 	cp /opt/elk/usr/lib/systemd/system/redis.service /usr/lib/systemd/system/redis.service
 	mkdir /log/redis/ /redis
 	chown redis: /log/redis/ /redis

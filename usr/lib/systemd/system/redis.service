@@ -3,6 +3,7 @@ Description=Redis persistent key-value database
 After=network.target
 
 [Service]
+LimitNOFILE=65536
 ExecStart=/opt/redis/bin/redis-server /opt/redis/redis.conf --daemonize no
 ExecStop=/opt/redis/bin/redis-shutdown
 User=redis
