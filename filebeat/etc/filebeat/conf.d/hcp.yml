@@ -7,7 +7,7 @@ filebeat.prospectors:
     # mapp 
     - /var/log/fmw/app/cn/*/*.log
     # mcd - watchout for mixing with hsapp prospector
-    -	/var/log/fmw/app/cn/mcd*/*/logs/*.log
+    - /var/log/fmw/app/cn/mcd*/*/logs/*.log
     # boss
     - /var/log/fmw/app/cn/boss/*/logs/*.log
   fields:
