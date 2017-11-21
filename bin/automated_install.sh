@@ -1,23 +1,21 @@
 #!/bin/bash
 ################### config ###############
+
 # PREFLIGHT CHECK: #
 # - java installed and linked to /opt/java
 # - all install packages in machines (/root/install/)
 # - enabled / disabled parameters below ( especially FS preparation )
 
-# - All needed files need to be in /root/install
-# - java has to be installed and linked to /opt/java
-# - make sure you are ok with config below
 
-#yum install git -y
+yum install git -y
 export VERSION=5.6.3
-export COUNTRY=MYAIR_PROD
+export COUNTRY=CN_PROD_TJ
 # prepare FS (cn specific)
 PREPAREFS=yes
 # prepare OS - run only once
-PREPAREOS=yes
+PREPAREOS=no
 # install / update sw - repeatable
-INSTALL=yes
+INSTALL=no
 ################### /config ###############
 
 
@@ -27,7 +25,7 @@ if [ $PREPAREFS == "yes" ];then
 	#vgremove vgData || echo removed
 	#vgextend vg00 /dev/sdb || echo added
 	lvcreate -n elklog -L 1G vg00
-	lvcreate -n elastic -L 90G vg00
+	lvcreate -n elastic -L 3t vg00
 	lvcreate -n opt -L 5g vg00
 	mkfs.ext4 /dev/mapper/vg00-elklog
 	mkfs.ext4 /dev/mapper/vg00-elastic
