@@ -1,2 +1,4 @@
 WLDATE %{YEAR}-%{MONTHNUM}-%{MONTHDAY}
-WLS_ACCESS %{WLDATE:Date}%{SPACE}%{TIME:Time}%{SPACE}%{IPORHOST:RemoteHost}%{SPACE}%{NUMBER:StatusOriginal:int}%{SPACE}%{NUMBER:BytesReceived:int}%{SPACE}%{NUMBER:TimeTakenToServeS:float}%{SPACE}%{DATA:RequestMethod}\t%{SPACE}%{GREEDYDATA:RequestUri}
+WLS_ACCESS_01 %{WLDATE:Date}%{SPACE}%{TIME:Time}%{SPACE}%{IPORHOST:RemoteHost}%{SPACE}%{NUMBER:StatusOriginal:int}%{SPACE}%{NUMBER:BytesReceived:int}%{SPACE}%{NUMBER:TimeTakenToServeS:float}%{SPACE}%{DATA:RequestMethod}\t%{SPACE}%{GREEDYDATA:RequestUri}
+WLS_ACCESS_02 %{IPORHOST:RemoteHost} - - \[%{HTTPDATE:Timestamp}\] "%{DATA:RequestMethod} %{DATA:RequestUri} %{DATA:RequestVersion}" %{NUMBER:StatusOriginal:int} %{NUMBER:TimeTakenToServeMs:int}
+WLS_ACCESS %{WLS_ACCESS_01}|%{WLS_ACCESS_02}
