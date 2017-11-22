@@ -17,3 +17,4 @@ CIFAPP1 (?:%{TIMESTAMP_ISO8601:Timestamp})%{SPACE}\[(?<ThreadId>.*)\]%{SPACE}\[(
 CIFAPP2 (?:%{TIMESTAMP_ISO8601:Timestamp})%{SPACE}\[(?<ThreadId>.*)\],%{SPACE}(?:%{JAVACLASS:Class})%{SPACE}%{LOGLEVEL:Severity}%{SPACE}-%{SPACE}%{GREEDYDATA:LogMessage}]
 CIFAPP %{CIFAPP2}|%{CIFAPP1}
 HOSELAPP %{TIMESTAMP_ISO8601:Timestamp}%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{SPACE}\[(?<ThreadId>.*)\]%{GREEDYDATA:LogMessage}
+APP_EXECUTED_TIME .*\{executed in %{NUMBER:ExecutionTimeMs:int} msec\}
