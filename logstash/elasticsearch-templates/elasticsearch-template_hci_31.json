@@ -1,6 +1,6 @@
 {
 	"template": "logstash-*",
-	"version": 1,
+	"version": 2,
 	"settings": {
 		"index.refresh_interval": "5s",
 		"number_of_shards": "10"
@@ -132,12 +132,6 @@
 				},
 				"BytesReceived": {
 					"type": "float"
-				},
-				"VirtualIp" : {
-					"type": "ip"
-				},
-				"RemoteHost" : {
-					"type": "ip"
 				},
 				"RemoteIp": {
 					"type": "ip"
