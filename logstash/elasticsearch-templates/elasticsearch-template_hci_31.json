@@ -16,9 +16,11 @@
 					"strings_as_keyword": {
 						"match_mapping_type": "string",
 						"mapping": {
-							"norms": false,
-							"ignore_above": 1024,
-							"type": "keyword"
+							"type" : "text", 
+							"norms" : false,
+							"fields" : {
+            					"keyword" : { "type": "keyword","ignore_above": 256 }
+            				}
 						}
 					}
 				}
