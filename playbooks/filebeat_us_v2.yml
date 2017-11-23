@@ -1,0 +1,25 @@
+---
+- name: Install & configure filebeat
+  #become: true
+  hosts: servers
+  tasks: 
+    - name : Sync installation
+      synchronize: 
+        src: /root/install/filebeat-5.6.4-linux-x86_64/
+        dest: /opt/filebeat/
+        archive: yes
+        delete: yes
+      notify: 
+        - Cleanup filebeat
+
+    - name : Sync environment specific config
+      synchronize: 
+        src: /opt/elk/filebeat/etc/filebeat/filebeat_us_prod_v2.yml
+        dest: /opt/filebeat/filebeat.yml
+        archive: yes
+        delete: yes
+
+  handlers:
+    - name: Restart filebeat service
+      listen: Cleanup filebeat
+      shell: cd /opt/filebeat; kill -9 `cat /tmp/run.pid`; nohup ./filebeat run & echo $! > /tmp/run.pid
