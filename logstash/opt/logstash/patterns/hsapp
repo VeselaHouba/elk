@@ -18,4 +18,4 @@ CIFAPP2 (?:%{TIMESTAMP_ISO8601:Timestamp})%{SPACE}\[(?<ThreadId>.*)\],%{SPACE}(?
 CIFAPP %{CIFAPP2}|%{CIFAPP1}
 HOSELAPP %{TIMESTAMP_ISO8601:Timestamp}%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{SPACE}\[(?<ThreadId>.*)\]%{GREEDYDATA:LogMessage}
 APP_EXECUTED_TIME .*\{executed in %{NUMBER:ExecutionTimeMs:int} msec\}
-NSINFO <SOAP-ENV:Body><ns.:%{DATA:Api} .*<ns.:code>%{NUMBER:Code:int}</ns.:code>.*<ns.:description>%{DATA:Description}</ns.:description>.*
+NSINFO <SOAP-ENV:Body><ns.:%{DATA:ApiName} .*<ns.:code>%{NUMBER:ApiCode:int}</ns.:code>.*<ns.:description>%{DATA:ApiDescription}</ns.:description>.*
