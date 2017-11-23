@@ -5,7 +5,6 @@ logging.files:
 
 filebeat:
   config_dir: /etc/filebeat/conf.d/
-  registry_file: /var/lib/filebeat/registry2
 
 fields:
     Country: "US"
