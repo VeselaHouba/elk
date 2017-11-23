@@ -112,6 +112,7 @@ fi
 if [ $INSTALL == "yes" ];then
 	cd /opt/
 	tar xzf ~/install/kibana-${VERSION}*
+	rm -f kibana
 	ln -s kibana-${VERSION}* kibana
 	chown kibana: /log/kibana /opt/kibana/ -R
 	cp /opt/elk/usr/lib/systemd/system/kibana.service /usr/lib/systemd/system/kibana.service
