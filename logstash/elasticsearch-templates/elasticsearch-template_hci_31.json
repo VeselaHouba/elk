@@ -136,6 +136,9 @@
 				},
 				"RemoteHost" : {
 					"type": "ip"
+				},
+				"RemoteIp": {
+					"type": "ip"
 				}
 			}
 		}
