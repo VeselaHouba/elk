@@ -130,6 +130,12 @@
 				},
 				"BytesReceived": {
 					"type": "float"
+				},
+				"VirtualIp" : {
+					"type": "ip"
+				},
+				"RemoteHost" : {
+					"type": "ip"
 				}
 			}
 		}
