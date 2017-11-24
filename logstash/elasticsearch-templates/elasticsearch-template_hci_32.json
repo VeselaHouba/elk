@@ -1,6 +1,6 @@
 {
 	"template": "logstash-*",
-	"version": 2,
+	"version": 3,
 	"settings": {
 		"index.refresh_interval": "5s",
 		"number_of_shards": "10"
@@ -13,7 +13,23 @@
 			},
 			"dynamic_templates": [
 				{
-					"default mapping": {
+					"Fulltext with index": {
+						"match_mapping_type": "string",
+						"unmatch" : "*.keyword",
+						"mapping": {
+							"type" : "text", 
+							"norms" : false,
+							"fields" : {
+            					"keyword" : { 
+            						"type": "keyword",
+            						"ignore_above": 256 
+            					}
+            				}
+						}
+					}
+				},
+				{
+					"KW only mapping defined in grok": {
 						"match_mapping_type": "string",
 						"match" : "*.keyword",
 						"mapping": {
@@ -23,19 +39,16 @@
 					}
 				},
 				{
-					"fulltext index": {
+					"Keywords defined here": {
+						"match_pattern": "regex",
+						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
 						"match_mapping_type": "string",
-						"unmatch" : "*.keyword",
 						"mapping": {
-							"type" : "text", 
-							"norms" : false,
-							"fields" : {
-            					"kw" : { "type": "keyword","ignore_above": 256 }
-            				}
+							"type": "keyword",
+							"ignore_above": 1024
 						}
 					}
 				}
-				
 	        ],
 			"properties": {
 				"@timestamp": {
