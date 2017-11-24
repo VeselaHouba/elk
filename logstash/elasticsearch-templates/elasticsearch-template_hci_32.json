@@ -1,6 +1,6 @@
 {
 	"template": "logstash-*",
-	"version": 3,
+	"version": 5,
 	"settings": {
 		"index.refresh_interval": "5s",
 		"number_of_shards": "10"
@@ -13,23 +13,18 @@
 			},
 			"dynamic_templates": [
 				{
-					"Fulltext with index": {
+					"Keywords list": {
+						"match_pattern": "regex",
+						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
 						"match_mapping_type": "string",
-						"unmatch" : "*.keyword",
 						"mapping": {
-							"type" : "text", 
-							"norms" : false,
-							"fields" : {
-            					"keyword" : { 
-            						"type": "keyword",
-            						"ignore_above": 256 
-            					}
-            				}
+							"type": "keyword",
+							"ignore_above": 1024
 						}
 					}
 				},
 				{
-					"KW only mapping defined in grok": {
+					"Keywords defined in grok time (by appending .keyword)": {
 						"match_mapping_type": "string",
 						"match" : "*.keyword",
 						"mapping": {
@@ -39,13 +34,17 @@
 					}
 				},
 				{
-					"Keywords defined here": {
-						"match_pattern": "regex",
-						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
+					"Fulltext with index - all strings not matched above": {
 						"match_mapping_type": "string",
 						"mapping": {
-							"type": "keyword",
-							"ignore_above": 1024
+							"type" : "text", 
+							"norms" : false,
+							"fields" : {
+            					"keyword" : { 
+            						"type": "keyword",
+            						"ignore_above": 256 
+            					}
+            				}
 						}
 					}
 				}
