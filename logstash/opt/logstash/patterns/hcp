@@ -7,4 +7,5 @@ HCP_MAPP %{TIMESTAMP_SAPP:Timestamp} (%{LOGLEVEL:Severity})? %{DATA:Class} - %{G
 HCP_LM %{TIMESTAMP_HCP:Timestamp} \[(%{LOGLEVEL:Severity})?\] \[%{DATA:ThreadId}\] \[%{DATA:Class}\] - %{GREEDYDATA:LogMessage}
 HCP_BOSS %{TIMESTAMP_HCP:Timestamp} \[%{DATA:CorrelationId}\] \[%{DATA:LoggedUser}\] \[%{DATA:MessageId}\] \[%{DATA:ThreadId}\] %{LOGLEVEL:Severity} %{DATA:Class} - %{GREEDYDATA:LogMessage}
 HCP_MCD %{TIMESTAMP_HCP:Timestamp}\|%{NUMBER:Sequence}?\|%{DATA:Host}?\|(%{DATA:ThreadId})?\|(%{LOGLEVEL:Severity})?\|%{DATA:Method}\|(%{DATA:RequestUri})?\|(%{DATA:CorrelationId})?\|(%{WORD:CuId})?\|\|\|%{DATA:Class}\|%{GREEDYDATA:LogMessage}
-HCP_APP %{HCP_MCD}|%{HCP_SAPP}|%{HCP_02}|%{HCP_01}|%{HCP_MAPP}|%{HCP_LM}|%{HCP_BOSS}
+HCP_TDP %{TIMESTAMP_HCP:Timestamp}\|(%{DATA:CorrelationId})?\|%{DATA:Host}?\|(%{DATA:ThreadId})?\|(%{LOGLEVEL:Severity})?%{SPACE}\|(%{DATA:Method})?\|(%{DATA:RequestUri})?\|(%{WORD:MessageId})?\|(%{DATA:SystemUserId})?\|(%{DATA:UserId})?\|%{DATA:Class}\|%{GREEDYDATA:LogMessage}
+HCP_APP %{HCP_MCD}|%{HCP_SAPP}|%{HCP_02}|%{HCP_01}|%{HCP_MAPP}|%{HCP_LM}|%{HCP_BOSS}|%{HCP_TDP}
