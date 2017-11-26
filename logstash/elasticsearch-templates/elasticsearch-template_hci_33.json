@@ -1,0 +1,166 @@
+{
+	"template": "logstash-*",
+	"version": 5,
+	"settings": {
+		"index.refresh_interval": "5s",
+		"number_of_shards": "10"
+	},
+	"mappings": {
+		"_default_": {
+			"_all": {
+				"enabled": true,
+				"norms": false
+			},
+			"dynamic_templates": [
+				{
+					"Keywords list": {
+						"match_pattern": "regex",
+						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri|VirtualHost",
+						"match_mapping_type": "string",
+						"mapping": {
+							"type": "keyword",
+							"ignore_above": 1024
+						}
+					}
+				},
+				{
+					"Keywords defined in grok time (by appending .keyword)": {
+						"match_mapping_type": "string",
+						"match" : "*.keyword",
+						"mapping": {
+							"type" : "keyword", 
+	        				"ignore_above": 256 
+						}
+					}
+				},
+				{
+					"Fulltext with index - all strings not matched above": {
+						"match_mapping_type": "string",
+						"mapping": {
+							"type" : "text", 
+							"norms" : false,
+							"fields" : {
+            					"keyword" : { 
+            						"type": "keyword",
+            						"ignore_above": 256 
+            					}
+            				}
+						}
+					}
+				}
+	        ],
+			"properties": {
+				"@timestamp": {
+					"type": "date"
+				},
+				"@version": {
+					"type": "keyword"
+				},
+				"geoip": {
+					"dynamic": true,
+					"properties": {
+						"ip": {
+							"type": "ip"
+						},
+						"location": {
+							"type": "geo_point"
+						},
+						"latitude": {
+							"type": "half_float"
+						},
+						"longitude": {
+							"type": "half_float"
+						}
+					}
+				}
+			}
+		},
+		"wlsaccess": {
+			"properties": {
+				"TimeTakenToServeS": {
+					"type": "float"
+				}
+			}
+		},
+		"apache_access": {
+			"properties": {
+				"RemoteIp": {
+					"type": "ip"
+				},
+				"geoip": {
+					"dynamic": "true",
+					"properties": {
+						"timezone": {
+							"type": "keyword"
+						},
+						"ip": {
+							"type": "ip"
+						},
+						"latitude": {
+							"type": "half_float"
+						},
+						"continent_code": {
+							"type": "keyword"
+						},
+						"city_name": {
+							"type": "keyword"
+						},
+						"country_code2": {
+							"type": "keyword"
+						},
+						"country_name": {
+							"type": "keyword"
+						},
+						"dma_code": {
+							"type": "long"
+						},
+						"country_code3": {
+							"type": "keyword"
+						},
+						"location": {
+							"type": "geo_point"
+						},
+						"region_name": {
+							"type": "keyword"
+						},
+						"postal_code": {
+							"type": "keyword"
+						},
+						"longitude": {
+							"type": "half_float"
+						},
+						"region_code": {
+							"type": "keyword"
+						}
+					}
+				}
+			}
+		},
+		"apache_error": {
+			"properties": {
+				"Client": {
+					"type": "ip"
+				}
+			}
+		},
+		"f5_access": {
+			"properties": {
+				"TimeTakenToServeMs": {
+					"type": "float"
+				},
+				"TimeTakenToServeUs": {
+					"type": "float"
+				},
+				"StatusOriginal": {
+					"type": "float"
+				},
+				"BytesReceived": {
+					"type": "float"
+				},
+				"RemoteIp": {
+					"type": "ip"
+				}
+			}
+		}
+	}
+}
