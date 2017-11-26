@@ -15,7 +15,7 @@
 				{
 					"Keywords list": {
 						"match_pattern": "regex",
-						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri",
+						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri|VirtualHost",
 						"match_mapping_type": "string",
 						"mapping": {
 							"type": "keyword",
