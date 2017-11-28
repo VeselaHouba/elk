@@ -2,24 +2,41 @@
 ################### config ###############
 
 # PREFLIGHT CHECK: #
+# - Opened ssh to git.homecredit.net
 # - java installed and linked to /opt/java
 # - all install packages in machines (/root/install/)
 # - enabled / disabled parameters below ( especially FS preparation )
-# - /opt/elk in place
-
+# - /opt/elk in place (or enable auto install & open ssh)
 
 export VERSION=6.0.0
-export COUNTRY=DEV
+export COUNTRY=VN_PROD
+export GIT_BRANCH="${COUNTRY}_v1"
+
+# install git && clone
+GITINSTALL=yes
 # prepare FS (cn specific)
 PREPAREFS=no
 # prepare OS - run only once
 PREPAREOS=yes
 # install / update sw - repeatable
-INSTALL=yes
-################### /config ###############
+INSTALLSW=yes
+#############################################################################
+########################### END OF CONFIG ###################################
+########################### DO NOT EDIT BELOW THIS LINE #####################
+#############################################################################
+
 
 
 umask 022
+#################### CLONE GIT #########################
+if [ $GITINSTALL == "yes" ];then
+	yum install -y git
+	cd /opt/
+	git clone git@git.homecredit.net:ops/elk.git
+	cd elk
+	git fetch
+	git checkout $GIT_BRANCH
+
 #################### CHECKS ############################
 files="
 /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
@@ -81,7 +98,7 @@ if [ $PREPAREOS == "yes" ];then
 	useradd -m elasticsearch -u 1100 -g 1100
 	mkdir /log/elasticsearch
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
 	tar xzf /root/install/elasticsearch-${VERSION}.tar.gz
 	rm -f elasticsearch
@@ -117,7 +134,7 @@ if [ $PREPAREOS == "yes" ];then
 	ldconfig
 	setcap 'cap_net_bind_service=+ep' /opt/java/bin/java
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
 	tar xzf /root/install/logstash-${VERSION}.tar.gz
 	rm -f logstash
@@ -138,7 +155,7 @@ if [ $PREPAREOS == "yes" ];then
 	useradd -m kibana -g 1103 -u 1103
 	mkdir /log/kibana
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
 	tar xzf /root/install/kibana-${VERSION}*
 	rm -f kibana
