@@ -20,6 +20,35 @@ INSTALL=yes
 
 
 umask 022
+#################### CHECKS ############################
+files="
+/opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
+/opt/elk/elasticsearch/config/jvm.options_elk-${COUNTRY}
+/root/install/redis.tar.gz
+/root/install/elasticsearch-${VERSION}.tar.gz
+/root/install/logstash-${VERSION}.tar.gz
+/root/install/kibana-${VERSION}*
+/opt/java
+"
+
+
+function check_file {
+	file=$1
+	if [ -e $file ]; then
+		echo $file ok
+	else  
+		echo "Missing file $file"
+		echo "Aborting installation"
+		exit 1
+	fi
+}
+
+echo "Checking needed files"
+for i in $files; do
+	check_file $i
+done 
+	 
+
 #################### FS PREPARATION ####################
 if [ $PREPAREFS == "yes" ];then
 	#vgremove vgData || echo removed
@@ -54,11 +83,11 @@ if [ $PREPAREOS == "yes" ];then
 fi
 if [ $INSTALL == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/elasticsearch-${VERSION}.tar.gz
+	tar xzf /root/install/elasticsearch-${VERSION}.tar.gz
 	rm -f elasticsearch
 	ln -s elasticsearch-${VERSION} elasticsearch
 	cp /opt/elk/usr/lib/systemd/system/elasticsearch.service /usr/lib/systemd/system/elasticsearch.service
-	ln -sf /opt/elk/etc/sysconfig/elasticsearch_elk-${COUNTRY} /etc/sysconfig/elasticsearch
+	ln -sf /opt/elk/etc/sysconfig/elasticsearch /etc/sysconfig/elasticsearch
 	ln -sf /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY} /opt/elasticsearch/config/elasticsearch.yml
 	ln -sf /opt/elk/elasticsearch/config/jvm.options_elk-${COUNTRY} /opt/elasticsearch/config/jvm.options
 	chown elasticsearch: /log/elasticsearch /elasticsearch /opt/elasticsearch/ -R
@@ -71,7 +100,7 @@ if [ $PREPAREOS == "yes" ];then
 	groupadd redis -g 1101
 	useradd -m redis -g 1101 -u 1101
 	cd /opt
-	tar xzf ~/install/redis.tar.gz
+	tar xzf /root/install/redis.tar.gz
 	ln -sf /opt/elk/redis/redis.conf /opt/redis/redis.conf
 	cp /opt/elk/usr/lib/systemd/system/redis.service /usr/lib/systemd/system/redis.service
 	mkdir /log/redis/ /redis
@@ -90,7 +119,7 @@ if [ $PREPAREOS == "yes" ];then
 fi
 if [ $INSTALL == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/logstash-${VERSION}.tar.gz
+	tar xzf /root/install/logstash-${VERSION}.tar.gz
 	rm -f logstash
 	ln -s logstash-${VERSION} logstash
 	ln -s /opt/elk/logstash/opt/logstash/patterns /opt/logstash/patterns
@@ -111,7 +140,7 @@ if [ $PREPAREOS == "yes" ];then
 fi
 if [ $INSTALL == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/kibana-${VERSION}*
+	tar xzf /root/install/kibana-${VERSION}*
 	rm -f kibana
 	ln -s kibana-${VERSION}* kibana
 	chown kibana: /log/kibana /opt/kibana/ -R
