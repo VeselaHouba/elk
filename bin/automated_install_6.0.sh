@@ -14,20 +14,52 @@ export GIT_BRANCH="${COUNTRY}_v1"
 
 # install git && clone
 GITINSTALL=yes
-# prepare FS (cn specific)
+# prepare FS - RUN ONLY ONCE!
 PREPAREFS=no
-# prepare OS - run only once
-PREPAREOS=yes
+# volume group
+VG="vgLOGS"
+# prepare OS
+PREPAREOS=no
 # install / update sw - repeatable
-INSTALLSW=yes
+INSTALLSW=no
 #############################################################################
 ########################### END OF CONFIG ###################################
 ########################### DO NOT EDIT BELOW THIS LINE #####################
 #############################################################################
 
-
-
 umask 022
+
+#################### FS PREPARATION ####################
+if [ $PREPAREFS == "yes" ];then
+	#vgremove vgData || echo removed
+	#vgextend $VG /dev/sdb || echo added
+
+	#mkfs.ext4 /dev/mapper/$VG-opt
+	#echo "/dev/mapper/$VG-opt                          /opt                    ext4    noatime                         1 2" >> /etc/fstab
+	#mount /opt
+	lvresize -L5G /dev/mapper/*-opt -r
+	
+	lvcreate -n elklog -L 1G $VG
+	mkfs.ext4 /dev/mapper/$VG-elklog
+	lvcreate -n opt -L 5g $VG
+	echo "/dev/mapper/$VG-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
+	mount /log
+
+	lvcreate -n elastic -l 100%FREE $VG
+	mkfs.ext4 /dev/mapper/$VG-elastic
+	tune2fs -m 0 /dev/mapper/$VG-elastic
+	mkdir /log /elasticsearch
+	echo "/dev/mapper/$VG-elastic                      /elasticsearch          ext4    noatime                         1 2" >> /etc/fstab
+	mount /elasticsearch
+fi
+
+if [ $PREPAREOS == "yes" ];then
+	yum install git -y
+	ln -sf /opt/elk/etc/cron.d/elk /etc/cron.d/elk
+	service crond reload
+fi
+
+
 #################### CLONE GIT #########################
 if [ $GITINSTALL == "yes" ];then
 	yum install -y git
@@ -36,7 +68,7 @@ if [ $GITINSTALL == "yes" ];then
 	cd elk
 	git fetch
 	git checkout $GIT_BRANCH
-
+fi
 #################### CHECKS ############################
 files="
 /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
@@ -65,32 +97,6 @@ for i in $files; do
 	check_file $i
 done 
 	 
-
-#################### FS PREPARATION ####################
-if [ $PREPAREFS == "yes" ];then
-	#vgremove vgData || echo removed
-	#vgextend vg00 /dev/sdb || echo added
-	lvcreate -n elklog -L 1G vg00
-	lvcreate -n elastic -L 3t vg00
-	lvcreate -n opt -L 5g vg00
-	mkfs.ext4 /dev/mapper/vg00-elklog
-	mkfs.ext4 /dev/mapper/vg00-elastic
-	mkfs.ext4 /dev/mapper/vg00-opt
-	tune2fs -m 0 /dev/mapper/vg00-elastic
-	mkdir /log /elasticsearch
-	echo "/dev/mapper/vg00-elastic                      /elasticsearch          ext4    noatime                         1 2" >> /etc/fstab
-	echo "/dev/mapper/vg00-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
-	echo "/dev/mapper/vg00-opt                          /opt                    ext4    noatime                         1 2" >> /etc/fstab
-	mount /log
-	mount /elasticsearch
-	mount /opt
-fi
-
-if [ $PREPAREOS == "yes" ];then
-	yum install git -y
-	ln -sf /opt/elk/etc/cron.d/elk /etc/cron.d/elk
-	service crond reload
-fi
 
 ################### elasticsearch ####################
 if [ $PREPAREOS == "yes" ];then
