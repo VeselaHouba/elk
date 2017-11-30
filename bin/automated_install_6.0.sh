@@ -13,7 +13,7 @@ export COUNTRY=VN_PROD
 export GIT_BRANCH="${COUNTRY}_v1"
 
 # install git && clone
-GITINSTALL=yes
+GITINSTALL=no
 # prepare FS - RUN ONLY ONCE!
 PREPAREFS=no
 # volume group
@@ -69,6 +69,10 @@ if [ $GITINSTALL == "yes" ];then
 	git fetch
 	git checkout $GIT_BRANCH
 fi
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'VN_PROD_v1' of git@git.homecredit.net:ops/elk.git
 #################### CHECKS ############################
 files="
 /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
@@ -171,7 +175,7 @@ if [ $INSTALLSW == "yes" ];then
 	ln -sf /opt/elk/kibana/config/kibana.yml /opt/kibana/config/kibana.yml
 fi
 
-if [ $PREPAREOS == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	systemctl enable logstash.service
 	systemctl enable redis.service
 	systemctl enable elasticsearch.service
