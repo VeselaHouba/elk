@@ -110,6 +110,8 @@ if [ $INSTALLSW == "yes" ];then
 	rm -f elasticsearch
 	ln -s elasticsearch-${VERSION} elasticsearch
 	cp /opt/elk/usr/lib/systemd/system/elasticsearch.service /usr/lib/systemd/system/elasticsearch.service
+	cp /opt/elk/usr/lib/sysctl.d/40-elasticsearch.conf /usr/lib/sysctl.d/40-elasticsearch.conf
+	sysctl -w vm.max_map_count=262144
 	ln -sf /opt/elk/etc/sysconfig/elasticsearch /etc/sysconfig/elasticsearch
 	ln -sf /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY} /opt/elasticsearch/config/elasticsearch.yml
 	ln -sf /opt/elk/elasticsearch/config/jvm.options_elk-${COUNTRY} /opt/elasticsearch/config/jvm.options
