@@ -69,10 +69,6 @@ if [ $GITINSTALL == "yes" ];then
 	git fetch
 	git checkout $GIT_BRANCH
 fi
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'VN_PROD_v1' of git@git.homecredit.net:ops/elk.git
 #################### CHECKS ############################
 files="
 /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
