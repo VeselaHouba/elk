@@ -34,7 +34,7 @@ path.data: /elasticsearch
 #
 # Path to log files:
 #
-#path.logs: /log
+path.logs: /log/elasticsearch
 #
 # ----------------------------------- Memory -----------------------------------
 #
