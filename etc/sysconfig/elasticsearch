@@ -6,7 +6,7 @@
 #ES_HOME=/opt/elasticsearch
 
 # Elasticsearch Java path
-#JAVA_HOME=
+JAVA_HOME=/opt/java
 
 # Elasticsearch configuration directory
 #ES_PATH_CONF=/opt/elasticsearch/conf/
