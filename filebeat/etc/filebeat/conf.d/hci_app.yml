@@ -60,3 +60,24 @@ filebeat.prospectors:
   multiline.match: after
   multiline.max_lines: 1000
   tags: ["openapi"]
+  
+  # KONG logs JSON
+- input_type: log
+  paths:
+    - /var/log/kong/*.log
+  fields:
+    type: "hsapp"
+  fields_under_root: true
+  ignore_older: 2h
+  tags: ["kong","json"]
+  exclude_files: ["kong.log", "access.log","error.log"]
+  
+  # KONG logs non JSON
+- input_type: log
+  paths:
+    - /var/log/kong/access.log
+  fields:
+    type: "hsapp"
+  fields_under_root: true
+  ignore_older: 2h
+  tags: ["kong"]
