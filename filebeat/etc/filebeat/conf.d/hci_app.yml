@@ -44,3 +44,19 @@ filebeat.prospectors:
   multiline.match: after
   multiline.max_lines: 1000
   tags: ["blaze"]
+  
+  
+  # OpenApi logs
+- input_type: log
+  paths:
+    - /var/log/fmw/app/*/*.log
+    
+  fields:
+    type: "hsapp"
+  fields_under_root: true
+  ignore_older: 2h
+  multiline.pattern: '^ ?[0-9]{4}-[0-9]{2}-[0-9]{2}'
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  tags: ["openapi"]

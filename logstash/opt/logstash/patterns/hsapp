@@ -19,3 +19,5 @@ CIFAPP %{CIFAPP2}|%{CIFAPP1}
 HOSELAPP %{TIMESTAMP_ISO8601:Timestamp}%{SPACE}(?<Severity>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)%{SPACE}\[(?<ThreadId>.*)\]%{GREEDYDATA:LogMessage}
 APP_EXECUTED_TIME .*\{executed in %{NUMBER:ExecutionTimeMs:int} msec\}
 NSINFO .*<ns.:code>%{NUMBER:NSCode:int}</ns.:code>.*<ns.:description>%{DATA:NSDesc}</ns.:description>.*
+OPENAPI_01 %{DATA:Timestamp}%{SPACE}\[%{DATA:ThreadId}\]%{SPACE}%{LOGLEVEL:Severity}%{SPACE}%{DATA:Class}%{SPACE}-%{SPACE}%{GREEDYDATA:LogMessage}
+OPENAPI %{OPENAPI_01}
