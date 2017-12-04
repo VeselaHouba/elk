@@ -3,19 +3,13 @@
 ################################
 
 # Elasticsearch home directory
-#ES_HOME=/usr/share/elasticsearch
+#ES_HOME=/opt/elasticsearch
 
 # Elasticsearch Java path
-JAVA_HOME=/opt/java
+#JAVA_HOME=
 
 # Elasticsearch configuration directory
-#CONF_DIR=/etc/elasticsearch
-
-# Elasticsearch data directory
-DATA_DIR=/elasticsearch
-
-# Elasticsearch logs directory
-LOG_DIR=/log/elasticsearch/
+#ES_PATH_CONF=/opt/elasticsearch/conf/
 
 # Elasticsearch PID directory
 #PID_DIR=/var/run/elasticsearch
@@ -32,14 +26,6 @@ LOG_DIR=/log/elasticsearch/
 
 # SysV init.d
 #
-# When executing the init script, this user will be used to run the elasticsearch service.
-# The default value is 'elasticsearch' and is declared in the init.d file.
-# Note that this setting is only used by the init script. If changed, make sure that
-# the configured user can read and write into the data, work, plugins and log directories.
-# For systemd service, the user is usually configured in file /usr/lib/systemd/system/elasticsearch.service
-ES_USER=elasticsearch
-ES_GROUP=elasticsearch
-
 # The number of seconds to wait before checking if Elasticsearch started successfully as a daemon process
 ES_STARTUP_SLEEP_TIME=5
 
@@ -63,3 +49,8 @@ ES_STARTUP_SLEEP_TIME=5
 # When using Systemd, this setting is ignored and the 'vm.max_map_count'
 # property is set at boot time in /usr/lib/sysctl.d/elasticsearch.conf
 #MAX_MAP_COUNT=262144
+~
+~
+~
+~
+~

@@ -2,42 +2,55 @@
 ################### config ###############
 
 # PREFLIGHT CHECK: #
+# - Opened ssh to git.homecredit.net
 # - java installed and linked to /opt/java
 # - all install packages in machines (/root/install/)
 # - enabled / disabled parameters below ( especially FS preparation )
-# - /opt/elk in place
-
+# - /opt/elk in place (or enable auto install & open ssh)
 
 export VERSION=6.0.0
-export COUNTRY=DEV
-# prepare FS (cn specific)
-PREPAREFS=no
-# prepare OS - run only once
-PREPAREOS=yes
-# install / update sw - repeatable
-INSTALL=yes
-################### /config ###############
+export COUNTRY=VN_PROD
+export GIT_BRANCH="${COUNTRY}_v1"
 
+# install git && clone
+GITINSTALL=no
+# prepare FS - RUN ONLY ONCE!
+PREPAREFS=no
+# volume group
+VG="vgLOGS"
+# prepare OS
+PREPAREOS=no
+# install / update sw - repeatable
+INSTALLSW=no
+#############################################################################
+########################### END OF CONFIG ###################################
+########################### DO NOT EDIT BELOW THIS LINE #####################
+#############################################################################
 
 umask 022
+
 #################### FS PREPARATION ####################
 if [ $PREPAREFS == "yes" ];then
 	#vgremove vgData || echo removed
-	#vgextend vg00 /dev/sdb || echo added
-	lvcreate -n elklog -L 1G vg00
-	lvcreate -n elastic -L 3t vg00
-	lvcreate -n opt -L 5g vg00
-	mkfs.ext4 /dev/mapper/vg00-elklog
-	mkfs.ext4 /dev/mapper/vg00-elastic
-	mkfs.ext4 /dev/mapper/vg00-opt
-	tune2fs -m 0 /dev/mapper/vg00-elastic
-	mkdir /log /elasticsearch
-	echo "/dev/mapper/vg00-elastic                      /elasticsearch          ext4    noatime                         1 2" >> /etc/fstab
-	echo "/dev/mapper/vg00-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
-	echo "/dev/mapper/vg00-opt                          /opt                    ext4    noatime                         1 2" >> /etc/fstab
+	#vgextend $VG /dev/sdb || echo added
+
+	#mkfs.ext4 /dev/mapper/$VG-opt
+	#echo "/dev/mapper/$VG-opt                          /opt                    ext4    noatime                         1 2" >> /etc/fstab
+	#mount /opt
+	lvresize -L5G /dev/mapper/*-opt -r
+	
+	lvcreate -n elklog -L 1G $VG
+	mkfs.ext4 /dev/mapper/$VG-elklog
+	lvcreate -n opt -L 5g $VG
+	echo "/dev/mapper/$VG-elklog                       /log                    ext4    noatime                         1 2" >> /etc/fstab
 	mount /log
+
+	lvcreate -n elastic -l 100%FREE $VG
+	mkfs.ext4 /dev/mapper/$VG-elastic
+	tune2fs -m 0 /dev/mapper/$VG-elastic
+	mkdir /log /elasticsearch
+	echo "/dev/mapper/$VG-elastic                      /elasticsearch          ext4    noatime                         1 2" >> /etc/fstab
 	mount /elasticsearch
-	mount /opt
 fi
 
 if [ $PREPAREOS == "yes" ];then
@@ -46,19 +59,60 @@ if [ $PREPAREOS == "yes" ];then
 	service crond reload
 fi
 
+
+#################### CLONE GIT #########################
+if [ $GITINSTALL == "yes" ];then
+	yum install -y git
+	cd /opt/
+	git clone git@git.homecredit.net:ops/elk.git
+	cd elk
+	git fetch
+	git checkout $GIT_BRANCH
+fi
+#################### CHECKS ############################
+files="
+/opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY}
+/opt/elk/elasticsearch/config/jvm.options_elk-${COUNTRY}
+/root/install/redis.tar.gz
+/root/install/elasticsearch-${VERSION}.tar.gz
+/root/install/logstash-${VERSION}.tar.gz
+/root/install/kibana-${VERSION}*
+/opt/java
+"
+
+
+function check_file {
+	file=$1
+	if [ -e $file ]; then
+		echo $file ok
+	else  
+		echo "Missing file $file"
+		echo "Aborting installation"
+		exit 1
+	fi
+}
+
+echo "Checking needed files"
+for i in $files; do
+	check_file $i
+done 
+	 
+
 ################### elasticsearch ####################
 if [ $PREPAREOS == "yes" ];then
 	groupadd elasticsearch -g 1100
 	useradd -m elasticsearch -u 1100 -g 1100
 	mkdir /log/elasticsearch
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/elasticsearch-${VERSION}.tar.gz
+	tar xzf /root/install/elasticsearch-${VERSION}.tar.gz
 	rm -f elasticsearch
 	ln -s elasticsearch-${VERSION} elasticsearch
 	cp /opt/elk/usr/lib/systemd/system/elasticsearch.service /usr/lib/systemd/system/elasticsearch.service
-	ln -sf /opt/elk/etc/sysconfig/elasticsearch_elk-${COUNTRY} /etc/sysconfig/elasticsearch
+	cp /opt/elk/usr/lib/sysctl.d/40-elasticsearch.conf /usr/lib/sysctl.d/40-elasticsearch.conf
+	sysctl -w vm.max_map_count=262144
+	ln -sf /opt/elk/etc/sysconfig/elasticsearch /etc/sysconfig/elasticsearch
 	ln -sf /opt/elk/elasticsearch/config/elasticsearch.yml_elk-${COUNTRY} /opt/elasticsearch/config/elasticsearch.yml
 	ln -sf /opt/elk/elasticsearch/config/jvm.options_elk-${COUNTRY} /opt/elasticsearch/config/jvm.options
 	chown elasticsearch: /log/elasticsearch /elasticsearch /opt/elasticsearch/ -R
@@ -71,7 +125,7 @@ if [ $PREPAREOS == "yes" ];then
 	groupadd redis -g 1101
 	useradd -m redis -g 1101 -u 1101
 	cd /opt
-	tar xzf ~/install/redis.tar.gz
+	tar xzf /root/install/redis.tar.gz
 	ln -sf /opt/elk/redis/redis.conf /opt/redis/redis.conf
 	cp /opt/elk/usr/lib/systemd/system/redis.service /usr/lib/systemd/system/redis.service
 	mkdir /log/redis/ /redis
@@ -88,9 +142,9 @@ if [ $PREPAREOS == "yes" ];then
 	ldconfig
 	setcap 'cap_net_bind_service=+ep' /opt/java/bin/java
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/logstash-${VERSION}.tar.gz
+	tar xzf /root/install/logstash-${VERSION}.tar.gz
 	rm -f logstash
 	ln -s logstash-${VERSION} logstash
 	ln -s /opt/elk/logstash/opt/logstash/patterns /opt/logstash/patterns
@@ -109,9 +163,9 @@ if [ $PREPAREOS == "yes" ];then
 	useradd -m kibana -g 1103 -u 1103
 	mkdir /log/kibana
 fi
-if [ $INSTALL == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	cd /opt/
-	tar xzf ~/install/kibana-${VERSION}*
+	tar xzf /root/install/kibana-${VERSION}*
 	rm -f kibana
 	ln -s kibana-${VERSION}* kibana
 	chown kibana: /log/kibana /opt/kibana/ -R
@@ -119,7 +173,7 @@ if [ $INSTALL == "yes" ];then
 	ln -sf /opt/elk/kibana/config/kibana.yml /opt/kibana/config/kibana.yml
 fi
 
-if [ $PREPAREOS == "yes" ];then
+if [ $INSTALLSW == "yes" ];then
 	systemctl enable logstash.service
 	systemctl enable redis.service
 	systemctl enable elasticsearch.service
