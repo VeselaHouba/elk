@@ -9,7 +9,7 @@
 # - /opt/elk in place (or enable auto install & open ssh)
 
 export VERSION=6.0.0
-export COUNTRY=VN_PROD
+export COUNTRY=CS_PROD
 export GIT_BRANCH="${COUNTRY}_v1"
 
 # install git && clone
@@ -64,7 +64,7 @@ fi
 if [ $GITINSTALL == "yes" ];then
 	yum install -y git
 	cd /opt/
-	git clone git@git.homecredit.net:ops/elk.git
+	[[ -e elk ]] || git clone git@git.homecredit.net:ops/elk.git
 	cd elk
 	git fetch
 	git checkout $GIT_BRANCH
