@@ -31,6 +31,7 @@ umask 022
 
 #################### FS PREPARATION ####################
 if [ $PREPAREFS == "yes" ];then
+	mkdir -p /log /elasticsearch
 	#vgremove vgData || echo removed
 	#vgextend $VG /dev/sdb || echo added
 
@@ -68,6 +69,7 @@ if [ $GITINSTALL == "yes" ];then
 	cd elk
 	git fetch
 	git checkout $GIT_BRANCH
+	git pull
 fi
 #################### CHECKS ############################
 files="
