@@ -18,7 +18,6 @@
         src: /opt/elk/filebeat/etc/filebeat/conf.d/
         dest: /etc/filebeat/conf.d/
       notify: 
-        #- Restart filebeat
         - Cleanup filebeat
 
     - name : Sync environment specific config
@@ -32,6 +31,7 @@
       service:
         name: filebeat
         state: started
+        enabled: yes
 
   handlers:
     #- name: Rescan files
