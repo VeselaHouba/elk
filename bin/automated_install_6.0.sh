@@ -19,9 +19,9 @@ PREPAREFS=no
 # volume group
 VG="vgLOGS"
 # prepare OS
-PREPAREOS=no
+PREPAREOS=yes
 # install / update sw - repeatable
-INSTALLSW=no
+INSTALLSW=yes
 #############################################################################
 ########################### END OF CONFIG ###################################
 ########################### DO NOT EDIT BELOW THIS LINE #####################
@@ -55,7 +55,6 @@ if [ $PREPAREFS == "yes" ];then
 fi
 
 if [ $PREPAREOS == "yes" ];then
-	yum install git -y
 	ln -sf /opt/elk/etc/cron.d/elk /etc/cron.d/elk
 	service crond reload
 fi
