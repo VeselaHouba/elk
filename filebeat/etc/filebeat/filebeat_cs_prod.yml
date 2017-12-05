@@ -6,7 +6,7 @@ filebeat:
   config_dir: /etc/filebeat/conf.d/
 
 fields:
-    Country: "VN"
+    Country: "CS"
     Environment: "PROD"
 fields_under_root: true
 tags: ["filebeat"]

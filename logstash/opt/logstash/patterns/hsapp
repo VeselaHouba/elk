@@ -23,6 +23,6 @@ OPENAPI_01 %{DATA:Timestamp}%{SPACE}\[%{DATA:ThreadId}\]%{SPACE}%{LOGLEVEL:Sever
 OPENAPI_02 %{DATA:Timestamp}%{SPACE}%{LOGLEVEL:Severity}%{SPACE}%{DATA:Class}%{SPACE}-%{SPACE}%{GREEDYDATA:LogMessage}
 OPENAPI_03 %{DATA:Timestamp} - %{GREEDYDATA:LogMessage}
 OPENAPI %{OPENAPI_01}|%{OPENAPI_02}|%{OPENAPI_03}
-KONG_ACCESS %{HOST:VirtualHost} - (-|%{DATA:User}) \[%{HTTPDATE:Timestamp}\] \"%{DATA:RequestMethod} %{DATA:RequestUri} %{DATA:RequestVersion}\" %{NUMBER:StatusOriginal:int} %{NUMBER:BytesReceived} \"-\" \"%{DATA:Client}\"
+KONG_ACCESS %{HOST:VirtualHost} - (-|%{DATA:User}) \[%{HTTPDATE:Timestamp}\] \"%{DATA:RequestMethod} %{DATA:RequestUri} %{DATA:RequestVersion}\" %{NUMBER:StatusOriginal:int} %{NUMBER:BytesReceived} \"(-|%{DATA:Referer})\" \"%{DATA:Client}\"
 URINUMBER %{URIVERSION:03}%{NUMBER}%{GREEDYDATA:04}
 URIVERSION %{DATA}%{NUMBER}%{DATA}
