@@ -1,0 +1,63 @@
+{
+  "template" : "logstash-*",
+  "version" : 60003,
+  "settings" : {
+    "index.refresh_interval" : "5s",
+    "number_of_shards": "10"
+  },
+  "mappings" : {
+    "_default_" : {
+      "dynamic_templates" : [
+      	{
+			"Keywords list": {
+				"match_pattern": "regex",
+				"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri|VirtualHost",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword",
+					"ignore_above": 1024
+				}
+			}
+		},
+		{
+			"Keywords defined in grok time (by appending .keyword)": {
+				"match_mapping_type": "string",
+				"match" : "*.keyword",
+				"mapping": {
+					"type" : "keyword", 
+    				"ignore_above": 256 
+				}
+			}
+		},
+		{
+			"Fulltext with index - all strings not matched above": {
+				"match_mapping_type": "string",
+				"mapping": {
+					"type" : "text", 
+					"norms" : false,
+					"fields" : {
+    					"keyword" : { 
+    						"type": "keyword",
+    						"ignore_above": 256 
+    					}
+    				}
+				}
+			}
+		}
+      ],
+      "properties" : {
+        "@timestamp": { "type": "date"},
+        "@version": { "type": "keyword"},
+        "geoip"  : {
+          "dynamic": true,
+          "properties" : {
+            "ip": { "type": "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "half_float" },
+            "longitude" : { "type" : "half_float" }
+          }
+        }
+      }
+    }
+  }
+}
