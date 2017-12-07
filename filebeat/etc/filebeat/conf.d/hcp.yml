@@ -10,6 +10,8 @@ filebeat.prospectors:
     - /var/log/fmw/app/cn/mcd*/*/logs/*.log
     # boss
     - /var/log/fmw/app/cn/boss/*/logs/*.log
+    # tdp
+    - /var/log/fmw/app/cn/tdp*/*/logs/*.log
   fields:
     type: "hcp_app"
   fields_under_root: true

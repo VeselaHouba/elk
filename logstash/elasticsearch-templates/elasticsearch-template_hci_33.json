@@ -1,6 +1,6 @@
 {
 	"template": "logstash-*",
-	"version": 2,
+	"version": 5,
 	"settings": {
 		"index.refresh_interval": "5s",
 		"number_of_shards": "10"
@@ -13,13 +13,37 @@
 			},
 			"dynamic_templates": [
 				{
-					"strings_as_keyword": {
+					"Keywords list": {
+						"match_pattern": "regex",
+						"match": "Environment|EnvName|Country|HCITRACE|worker|type|CorrelationId|Timestamp|ThreadId|Severity|Class|Hostname|Program|fingerprint|ManagedServer|RequestUri|VirtualHost",
+						"match_mapping_type": "string",
+						"mapping": {
+							"type": "keyword",
+							"ignore_above": 1024
+						}
+					}
+				},
+				{
+					"Keywords defined in grok time (by appending .keyword)": {
+						"match_mapping_type": "string",
+						"match" : "*.keyword",
+						"mapping": {
+							"type" : "keyword", 
+	        				"ignore_above": 256 
+						}
+					}
+				},
+				{
+					"Fulltext with index - all strings not matched above": {
 						"match_mapping_type": "string",
 						"mapping": {
 							"type" : "text", 
 							"norms" : false,
 							"fields" : {
-            					"keyword" : { "type": "keyword","ignore_above": 256 }
+            					"keyword" : { 
+            						"type": "keyword",
+            						"ignore_above": 256 
+            					}
             				}
 						}
 					}
