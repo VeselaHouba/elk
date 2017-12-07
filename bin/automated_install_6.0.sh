@@ -8,9 +8,9 @@
 # - enabled / disabled parameters below ( especially FS preparation )
 # - /opt/elk in place (or enable auto install & open ssh)
 
-export VERSION=6.0.0
-export COUNTRY=CS_PROD
-export GIT_BRANCH="${COUNTRY}_v1"
+export VERSION=6.0.1
+export COUNTRY=CN_PROD
+export GIT_BRANCH="${COUNTRY}_v4"
 
 # install git && clone
 GITINSTALL=no

@@ -30,11 +30,11 @@ node.name: ${HOSTNAME}
 #
 # Path to directory where to store the data (separate multiple locations by comma):
 #
-#path.data: /elasticsearch
+path.data: /elasticsearch
 #
 # Path to log files:
 #
-#path.logs: /log
+path.logs: /log/elasticsearch
 #
 # ----------------------------------- Memory -----------------------------------
 #
