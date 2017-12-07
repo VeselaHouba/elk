@@ -9,8 +9,8 @@
 # - /opt/elk in place (or enable auto install & open ssh)
 
 export VERSION=6.0.1
-export COUNTRY=CN_PROD
-export GIT_BRANCH="${COUNTRY}_v4"
+export COUNTRY=CN_PROD_WH
+export GIT_BRANCH="CN_PROD_v4"
 
 # install git && clone
 GITINSTALL=no
