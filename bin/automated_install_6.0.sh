@@ -49,7 +49,7 @@ if [ $PREPAREFS == "yes" ];then
 	lvcreate -n elastic -l 100%FREE $VG
 	mkfs.ext4 /dev/mapper/$VG-elastic
 	tune2fs -m 0 /dev/mapper/$VG-elastic
-	mkdir /log /elasticsearch
+	mkdir -p /log /elasticsearch
 	echo "/dev/mapper/$VG-elastic                      /elasticsearch          ext4    noatime                         1 2" >> /etc/fstab
 	mount /elasticsearch
 fi
@@ -103,7 +103,7 @@ done
 if [ $PREPAREOS == "yes" ];then
 	groupadd elasticsearch -g 1100
 	useradd -m elasticsearch -u 1100 -g 1100
-	mkdir /log/elasticsearch
+	mkdir -p /log/elasticsearch
 fi
 if [ $INSTALLSW == "yes" ];then
 	cd /opt/
@@ -129,7 +129,7 @@ if [ $PREPAREOS == "yes" ];then
 	tar xzf /root/install/redis.tar.gz
 	ln -sf /opt/elk/redis/redis.conf /opt/redis/redis.conf
 	cp /opt/elk/usr/lib/systemd/system/redis.service /usr/lib/systemd/system/redis.service
-	mkdir /log/redis/ /redis
+	mkdir -p /log/redis/ /redis
 	chown redis: /log/redis/ /redis
 fi
 
@@ -137,7 +137,7 @@ fi
 if [ $PREPAREOS == "yes" ];then
 	groupadd logstash -g 1102
 	useradd -m logstash -g 1102 -u 1102
-	mkdir /log/logstash
+	mkdir -p /log/logstash
 	# listening on privileged port (514)
 	echo "/opt/java/jre/lib/amd64/jli" > /etc/ld.so.conf.d/java.conf
 	ldconfig
@@ -162,7 +162,7 @@ fi
 if [ $PREPAREOS == "yes" ];then
 	groupadd kibana -g 1103
 	useradd -m kibana -g 1103 -u 1103
-	mkdir /log/kibana
+	mkdir -p /log/kibana
 fi
 if [ $INSTALLSW == "yes" ];then
 	cd /opt/
